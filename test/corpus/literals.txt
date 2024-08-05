@@ -2,6 +2,7 @@
 All Literals
 ================================================================================
 num = -4.3;
+escape = "\\";
 name = "Karl";
 boolean = true;
 list = [1, 2, each [3, 4], [5, 6]];
@@ -15,6 +16,9 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
   (assignment
     (identifier)
     (float))
+  (assignment
+    (identifier)
+    (string))
   (assignment
     (identifier)
     (string))
