@@ -46,7 +46,7 @@ module comma1(x,) {}
   (assignment
     (identifier)
     (boolean))
-  (function_declaration
+  (function_item
     (identifier)
     (parameters_declaration
       (parameter
@@ -83,11 +83,11 @@ module comma1(x,) {}
     (identifier)
     (parameters_declaration)
     (union_block))
-  (function_declaration
+  (function_item
     (identifier)
     (parameters_declaration)
     (decimal))
-  (function_declaration
+  (function_item
     (identifier)
     (parameters_declaration
       (parameter
@@ -121,7 +121,7 @@ module extern_module() include <other_file.scad>
     name: (identifier)
     parameters: (parameters_declaration)
     body: (union_block
-      (function_declaration
+      (function_item
         name: (identifier)
         parameters: (parameters_declaration)
         (undef))
@@ -159,7 +159,7 @@ module my_cylinder() {
   (assignment
     (identifier)
     (decimal))
-  (function_declaration
+  (function_item
     (identifier)
     (parameters_declaration
       (parameter
@@ -167,8 +167,8 @@ module my_cylinder() {
     (comment)
     (binary_expression
       (identifier)
-      (decimal)))
-  (comment)
+      (decimal))
+    (comment))
   (module_declaration
     (identifier)
     (parameters_declaration)

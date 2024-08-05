@@ -44,7 +44,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function_declaration"
+          "name": "function_item"
         }
       ]
     },
@@ -162,7 +162,7 @@
         }
       ]
     },
-    "function_declaration": {
+    "function_item": {
       "type": "SEQ",
       "members": [
         {
@@ -192,6 +192,10 @@
         {
           "type": "SYMBOL",
           "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
@@ -863,7 +867,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function"
+          "name": "function_lit"
         },
         {
           "type": "SYMBOL",
@@ -875,7 +879,7 @@
         }
       ]
     },
-    "function": {
+    "function_lit": {
       "type": "SEQ",
       "members": [
         {

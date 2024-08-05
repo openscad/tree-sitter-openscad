@@ -64,7 +64,7 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
       (decimal)))
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier))
@@ -394,7 +394,7 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
     (identifier)
     (list
       (each
-        (function
+        (function_lit
           (parameters_declaration)
           (decimal)))))
   (assignment

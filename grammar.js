@@ -152,7 +152,7 @@ module.exports = grammar({
       seq($.assignment, ';'),
       $._statement,
       $.module_declaration,
-      $.function_declaration,
+      $.function_item,
     ),
 
     // modules
@@ -167,13 +167,14 @@ module.exports = grammar({
     // and the RHS as either @variable or @constant
     _parameter_declaration: $ => choice(alias($._variable_name, $.parameter), $.assignment),
 
-    // function declarations are slightly different from $.function, which is for
-    // function literals
-    function_declaration: $ => seq(
+    // function_item diffeers from  $.function_lit which defines anonymous functions/ function literals:
+    // https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules#Function_literals
+    function_item: $ => seq(
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters_declaration),
       '=', $.expression,
+      ';'
     ),
 
     // statements are language constructs that can create objects
@@ -273,13 +274,13 @@ module.exports = grammar({
       $.number,
       $.boolean,
       $.undef,
-      $.function,
+      $.function_lit,
       $.range,
       $.list,
     ),
 
     // compound atoms that are still literals
-    function: $ => seq(
+    function_lit: $ => seq(
       'function',
       field('parameters', $.parameters_declaration),
       field('body', $.expression),

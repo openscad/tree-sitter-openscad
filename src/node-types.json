@@ -62,7 +62,7 @@
         "named": true
       },
       {
-        "type": "function",
+        "type": "function_lit",
         "named": true
       },
       {
@@ -570,32 +570,6 @@
     }
   },
   {
-    "type": "function",
-    "named": true,
-    "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "parameters": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "parameters_declaration",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "function_call",
     "named": true,
     "fields": {
@@ -622,7 +596,7 @@
     }
   },
   {
-    "type": "function_declaration",
+    "type": "function_item",
     "named": true,
     "fields": {
       "name": {
@@ -655,6 +629,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "function_lit",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameters_declaration",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1377,7 +1377,7 @@
           "named": true
         },
         {
-          "type": "function_declaration",
+          "type": "function_item",
           "named": true
         },
         {
@@ -1570,7 +1570,7 @@
           "named": true
         },
         {
-          "type": "function_declaration",
+          "type": "function_item",
           "named": true
         },
         {

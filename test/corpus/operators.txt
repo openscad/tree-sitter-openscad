@@ -102,7 +102,7 @@ echo(true && 4 == 4);
 --------------------------------------------------------------------------------
 
 (source_file
-  (function_declaration
+  (function_item
     (identifier)
     (parameters_declaration
       (parameter
@@ -115,7 +115,7 @@ echo(true && 4 == 4);
           (arguments
             (string)
             (identifier))))))
-  (function_declaration
+  (function_item
     (identifier)
     (parameters_declaration
       (parameter
@@ -239,14 +239,14 @@ indexer = function(v) v[0];
 (source_file
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier)))
       (identifier)))
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier)))
@@ -258,7 +258,7 @@ indexer = function(v) v[0];
     (identifier)
     (function_call
       (parenthesized_expression
-        (function
+        (function_lit
           (parameters_declaration
             (parameter
               (identifier)))
@@ -267,7 +267,7 @@ indexer = function(v) v[0];
         (decimal))))
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier))
@@ -278,7 +278,7 @@ indexer = function(v) v[0];
         (identifier))))
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier))
@@ -289,7 +289,7 @@ indexer = function(v) v[0];
         (identifier))))
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier)))
@@ -308,7 +308,7 @@ echo(function(y) y ? "first" : "second");
 (source_file
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier)))
@@ -325,7 +325,7 @@ echo(function(y) y ? "first" : "second");
     (module_call
       (identifier)
       (arguments
-        (function
+        (function_lit
           (parameters_declaration
             (parameter
               (identifier)))
@@ -353,7 +353,7 @@ echo(assert(true) assert(false) true);
       (decimal)))
   (assignment
     (identifier)
-    (function
+    (function_lit
       (parameters_declaration
         (parameter
           (identifier)))
