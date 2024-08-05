@@ -377,7 +377,7 @@ module.exports = grammar({
     special_variable: $ => seq('$', $.identifier),
     _variable_name: $ => choice($.identifier, $.special_variable),
 
-    string: _ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
+    string: _ => token(seq('"', repeat(choice(/[^"]/, '\\"', "\\\\")), '"')),
     number: $ => choice($.decimal, $.float),
     decimal: _ => token(/-?\d+/),
     float: _ => token(/-?(\d+(\.\d+)?|\.\d+)(e-?\d+)?/),
