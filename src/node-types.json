@@ -1435,6 +1435,11 @@
     }
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "ternary_expression",
     "named": true,
     "fields": {
@@ -1627,6 +1632,10 @@
     "named": false
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -1715,6 +1724,10 @@
     "named": false
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -1789,10 +1802,6 @@
   {
     "type": "module",
     "named": false
-  },
-  {
-    "type": "string",
-    "named": true
   },
   {
     "type": "true",

@@ -57,6 +57,7 @@
     {
       "scope": "source.openscad",
       "file-types": [
+        "openscad",
         "scad"
       ]
     }

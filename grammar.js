@@ -377,7 +377,14 @@ module.exports = grammar({
     special_variable: $ => seq('$', $.identifier),
     _variable_name: $ => choice($.identifier, $.special_variable),
 
-    string: _ => token(seq('"', repeat(choice(/[^"]/, '\\"', "\\\\")), '"')),
+    string: _ => seq(
+          '"',
+          repeat(choice(
+            token.immediate(prec(1, /[^"\\]+/)),
+            '\\',
+          )),
+          '"'
+        ),
     number: $ => choice($.decimal, $.float),
     decimal: _ => token(/-?\d+/),
     float: _ => token(/-?(\d+(\.\d+)?|\.\d+)(e-?\d+)?/),
@@ -386,7 +393,7 @@ module.exports = grammar({
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     comment: _ => token(choice(
-      seq('//', /(\\(.|\r?\n)|[^\\\n])*/),
+      seq('//', /.*/),
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
