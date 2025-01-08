@@ -379,6 +379,11 @@
     }
   },
   {
+    "type": "block_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "boolean",
     "named": true,
     "fields": {}
@@ -1045,6 +1050,11 @@
     }
   },
   {
+    "type": "line_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "list",
     "named": true,
     "fields": {},
@@ -1685,6 +1695,14 @@
     "named": false
   },
   {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -1743,10 +1761,6 @@
   {
     "type": "assign",
     "named": false
-  },
-  {
-    "type": "comment",
-    "named": true
   },
   {
     "type": "decimal",

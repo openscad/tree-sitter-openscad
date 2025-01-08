@@ -7,6 +7,7 @@
 ; Functions
 
 (function_call function: (identifier) @function (#set! "priority" 105))
+(function_item (identifier) @function (#set! "priority" 105))
 (module_call name: (identifier) @function (#set! "priority" 105))
 
 ; Variables
@@ -47,6 +48,7 @@
  "^"
  "!"
  ":"
+ "="
  ] @operator
 
 ; Builtins
