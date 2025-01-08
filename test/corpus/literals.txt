@@ -9,7 +9,7 @@ esc = "\\";
   (assignment
     (identifier)
     (string))
-  (comment))
+  (line_comment))
 
 ================================================================================
 All Literals

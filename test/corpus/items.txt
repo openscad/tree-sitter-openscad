@@ -38,11 +38,11 @@ module comma1(x,) {}
     (include_path))
   (use_statement
     (include_path))
-  (comment)
+  (block_comment)
   (assignment
     (identifier)
     (decimal))
-  (comment)
+  (line_comment)
   (assignment
     (identifier)
     (boolean))
@@ -155,7 +155,7 @@ module my_cylinder() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (comment)
+  (block_comment)
   (assignment
     (identifier)
     (decimal))
@@ -164,21 +164,21 @@ module my_cylinder() {
     (parameters_declaration
       (parameter
         (identifier)))
-    (comment)
+    (block_comment)
     (binary_expression
       (identifier)
       (decimal))
-    (comment))
+    (line_comment))
   (module_declaration
     (identifier)
     (parameters_declaration)
     (union_block
-      (comment)
+      (line_comment)
       (transform_chain
         (module_call
           (identifier)
           (arguments)))
-      (comment)
+      (block_comment)
       (transform_chain
         (module_call
           (identifier)
