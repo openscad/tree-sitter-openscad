@@ -21,87 +21,92 @@
 ; Keywords
 
 [
- "module"
- "function"
- "let"
- "assign"
- "use"
- "each"
- ] @keyword
+  "module"
+  "function"
+  "let"
+  "assign"
+  "use"
+  "each"
+] @keyword
 
 ; Operators
 
 [
- "||"
- "&&"
- "=="
- "!="
- "<"
- ">"
- "<="
- ">="
- "+"
- "-"
- "*"
- "/"
- "%"
- "^"
- "!"
- ":"
- "="
- ] @operator
+  "||"
+  "&&"
+  "=="
+  "!="
+  "<"
+  ">"
+  "<="
+  ">="
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  "^"
+  "!"
+  ":"
+  "="
+] @operator
 
 ; Builtins
 
-((identifier) @function.builtin
-			  (#any-of? @function.builtin
-			   "union"
-			   "difference"
-			   "intersection"
-			   "circle"
-			   "square"
-			   "polygon"
-			   "text"
-			   "import"
-			   "projection"
-			   "sphere"
-			   "cube"
-			   "cylinder"
-			   "polyhedron"
-			   "linear_extrude"
-			   "rotate_extrude"
-			   "surface"
-			   "translate"
-			   "rotate"
-			   "scale"
-			   "resize"
-			   "mirror"
-			   "multmatrix"
-			   "color"
-			   "offset"
-			   "hull"
-			   "minkowski"
-			   ))
+(
+  (identifier) @function.builtin
+  (#any-of?
+  @function.builtin
+  "union"
+  "difference"
+  "intersection"
+  "circle"
+  "square"
+  "polygon"
+  "text"
+  "import"
+  "projection"
+  "sphere"
+  "cube"
+  "cylinder"
+  "polyhedron"
+  "linear_extrude"
+  "rotate_extrude"
+  "surface"
+  "translate"
+  "rotate"
+  "scale"
+  "resize"
+  "mirror"
+  "multmatrix"
+  "color"
+  "offset"
+  "hull"
+  "minkowski")
+)
 
-((identifier) @identifier
-			  (#eq? @identifier "PI")) @constant.builtin
+(
+  (identifier) @identifier
+  (#eq? @identifier "PI")
+) @constant.builtin
 
 ; Conditionals
 
 [
- "if"
- "else"
- ] @keyword.conditional
+  "if"
+  "else"
+] @keyword.conditional
 
 (ternary_expression
-  ["?" ":"] @keyword.conditional.ternary)
+  ["?" ":"] @keyword.conditional.ternary
+)
 
 ; Repeats
 
 [
- "for"
- "intersection_for"
- ] @keyword.repeat
+  "for"
+  "intersection_for"
+] @keyword.repeat
 
 ; Literals
 
@@ -116,8 +121,8 @@
 ; Misc
 
 [
- "#"
- ] @punctuation.special
+  "#"
+] @punctuation.special
 
 ["{" "}"] @punctuation.bracket
 
@@ -126,10 +131,10 @@
 ["[" "]"] @punctuation.bracket
 
 [
- ";"
- ","
- "."
- ] @punctuation.delimiter
+  ";"
+  ","
+  "."
+] @punctuation.delimiter
 
 ; Comments
 
