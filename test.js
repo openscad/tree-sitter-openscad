@@ -67,7 +67,7 @@ describe('Upstream OpenSCAD test samples', () => {
     }
   }
 
-  // Make sure we aren't ignoring any non-existant examples. This will be useful
+  // Make sure we aren't ignoring any non-existent examples. This will be useful
   // if examples are removed from the openscad repository after updating.
   // Otherwise, our ignore lists might fill up with unneeded ignores over time.
   assert.strictEqual(expected_failed_parses.length, 0);

@@ -41,7 +41,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "module_declaration"
+          "name": "module_item"
         },
         {
           "type": "SYMBOL",
@@ -49,7 +49,7 @@
         }
       ]
     },
-    "module_declaration": {
+    "module_item": {
       "type": "SEQ",
       "members": [
         {

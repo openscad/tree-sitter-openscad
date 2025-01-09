@@ -1178,7 +1178,7 @@
     }
   },
   {
-    "type": "module_declaration",
+    "type": "module_item",
     "named": true,
     "fields": {
       "body": {
@@ -1407,7 +1407,7 @@
           "named": true
         },
         {
-          "type": "module_declaration",
+          "type": "module_item",
           "named": true
         },
         {
@@ -1600,7 +1600,7 @@
           "named": true
         },
         {
-          "type": "module_declaration",
+          "type": "module_item",
           "named": true
         },
         {

@@ -153,19 +153,19 @@ module.exports = grammar({
     _item: $ => choice(
       seq($.assignment, ';'),
       $._statement,
-      $.module_declaration,
+      $.module_item,
       $.function_item,
     ),
 
     // modules
-    module_declaration: $ => seq(
+    module_item: $ => seq(
       'module',
       field('name', $.identifier),
       field('parameters', $.parameters_declaration),
       field('body', $._statement),
     ),
     parameters_declaration: $ => parens(seq(commaSep($._parameter_declaration), optional(','))),
-    // TODO: segment assigment so that parameters can have the LHS highlighted as @parameter
+    // TODO: segment assignment so that parameters can have the LHS highlighted as @parameter
     // and the RHS as either @variable or @constant
     _parameter_declaration: $ => choice(alias($._variable_name, $.parameter), $.assignment),
 
