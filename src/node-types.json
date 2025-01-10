@@ -316,7 +316,7 @@
       "required": true,
       "types": [
         {
-          "type": "parenthesized_assignments",
+          "type": "assignments",
           "named": true
         }
       ]
@@ -350,6 +350,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "assignments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -532,7 +547,7 @@
       "required": true,
       "types": [
         {
-          "type": "parenthesized_assignments",
+          "type": "assignments",
           "named": true
         }
       ]
@@ -547,6 +562,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignments",
+          "named": true
+        },
+        {
           "type": "condition_update_clause",
           "named": true
         },
@@ -560,10 +579,6 @@
         },
         {
           "type": "list_comprehension",
-          "named": true
-        },
-        {
-          "type": "parenthesized_assignments",
           "named": true
         }
       ]
@@ -614,7 +629,7 @@
         "required": true,
         "types": [
           {
-            "type": "parameters_declaration",
+            "type": "parameters",
             "named": true
           }
         ]
@@ -650,7 +665,7 @@
         "required": true,
         "types": [
           {
-            "type": "parameters_declaration",
+            "type": "parameters",
             "named": true
           }
         ]
@@ -864,16 +879,6 @@
     "type": "index_expression",
     "named": true,
     "fields": {
-      "index": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
         "required": true,
@@ -884,6 +889,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -946,7 +961,7 @@
       "required": true,
       "types": [
         {
-          "type": "parenthesized_assignments",
+          "type": "assignments",
           "named": true
         }
       ]
@@ -1012,7 +1027,7 @@
       "required": true,
       "types": [
         {
-          "type": "parenthesized_assignments",
+          "type": "assignments",
           "named": true
         }
       ]
@@ -1038,7 +1053,7 @@
       "required": true,
       "types": [
         {
-          "type": "parenthesized_assignments",
+          "type": "assignments",
           "named": true
         }
       ]
@@ -1246,7 +1261,7 @@
         "required": true,
         "types": [
           {
-            "type": "parameters_declaration",
+            "type": "parameters",
             "named": true
           }
         ]
@@ -1262,6 +1277,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1273,34 +1292,15 @@
     }
   },
   {
-    "type": "parameters_declaration",
+    "type": "parameters",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "assignment",
-          "named": true
-        },
         {
           "type": "parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "parenthesized_assignments",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "assignment",
           "named": true
         }
       ]
@@ -1375,10 +1375,6 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "for_block",
           "named": true
         },
@@ -1420,6 +1416,10 @@
         },
         {
           "type": "use_statement",
+          "named": true
+        },
+        {
+          "type": "var_declaration",
           "named": true
         }
       ]
@@ -1568,10 +1568,6 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "for_block",
           "named": true
         },
@@ -1610,6 +1606,10 @@
         {
           "type": "union_block",
           "named": true
+        },
+        {
+          "type": "var_declaration",
+          "named": true
         }
       ]
     }
@@ -1624,6 +1624,21 @@
       "types": [
         {
           "type": "include_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "var_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
           "named": true
         }
       ]

@@ -120,7 +120,7 @@ intersection_for (i = [1, 2, 3]) {
             (identifier)
             (arguments))))))
   (for_block
-    (parenthesized_assignments
+    (assignments
       (assignment
         (identifier)
         (range
@@ -129,7 +129,7 @@ intersection_for (i = [1, 2, 3]) {
           (decimal))))
     (union_block
       (let_block
-        (parenthesized_assignments
+        (assignments
           (assignment
             (identifier)
             (binary_expression
@@ -157,7 +157,7 @@ intersection_for (i = [1, 2, 3]) {
                     (identifier)
                     (identifier))))))))))
   (intersection_for_block
-    (parenthesized_assignments
+    (assignments
       (assignment
         (identifier)
         (list
@@ -244,9 +244,10 @@ for (y = [3:5])
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    (identifier)
-    (decimal))
+  (var_declaration
+    (assignment
+      (identifier)
+      (decimal)))
   (assert_statement
     (binary_expression
       (identifier)
@@ -256,7 +257,7 @@ for (y = [3:5])
         (identifier)
         (arguments))))
   (for_block
-    (parenthesized_assignments
+    (assignments
       (assignment
         (identifier)
         (range

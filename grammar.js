@@ -1,6 +1,3 @@
-/* eslint-disable arrow-parens */
-/* eslint-disable camelcase */
-/* eslint-disable-next-line spaced-comment */
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
@@ -12,8 +9,7 @@
  * @param {string} separator - The separator to use.
  * @param {boolean?} trailing_separator - The trailing separator to use.
  *
- * @return {SeqRule}
- *
+ * @returns {SeqRule}
  */
 const listSeq = (rule, separator, trailing_separator = false) =>
   trailing_separator ?
@@ -27,8 +23,7 @@ const listSeq = (rule, separator, trailing_separator = false) =>
  * @param {Rule} rule
  * @param {boolean?} trailing_separator - The trailing separator to use.
  *
- * @return {SeqRule}
- *
+ * @returns {SeqRule}
  */
 function commaSep1(rule, trailing_separator = false) {
   // return seq(rule, repeat(seq(',', rule)))
@@ -42,8 +37,7 @@ function commaSep1(rule, trailing_separator = false) {
  * @param {Rule} rule
  * @param {boolean?} trailing_separator - The trailing separator to use.
  *
- * @return {ChoiceRule}
- *
+ * @returns {ChoiceRule}
  */
 function commaSep(rule, trailing_separator = false) {
   return optional(commaSep1(rule, trailing_separator));
@@ -51,10 +45,11 @@ function commaSep(rule, trailing_separator = false) {
 
 /**
  * This callback should take a rule and places it in between a group (e.g. parentheses).
+ *
  * @callback GroupingCallback
  * @param {Rule} rule
  *
- * @return {SeqRule}
+ * @returns {SeqRule}
  */
 
 /**
@@ -63,7 +58,7 @@ function commaSep(rule, trailing_separator = false) {
  * @param {GroupingCallback} grouping
  * @param {Rule} rule
  *
- * @return {ChoiceRule}
+ * @returns {ChoiceRule}
  */
 function opt_grouping(grouping, rule) {
   return choice(grouping(rule), rule);
@@ -74,7 +69,7 @@ function opt_grouping(grouping, rule) {
  *
  * @param {Rule} rule
  *
- * @return {SeqRule}
+ * @returns {SeqRule}
  */
 function parens(rule) {
   return seq('(', rule, ')');
@@ -85,32 +80,21 @@ function parens(rule) {
  *
  * @param {Rule} rule
  *
- * @return {SeqRule}
+ * @returns {SeqRule}
  */
 function brackets(rule) {
   return seq('[', rule, ']');
 }
 
 /**
- * Creates a rule to match a rule surrounded by curly brackets.
- *
- * @param {Rule} rule
- *
- * @return {SeqRule}
- */
-function curlies(rule) {
-  return seq('{', rule, '}');
-}
-
-/**
  * Creates a rule that matches a keyword followed by its "effect",
  * and then a block.
  *
- * @param {String} keyword
+ * @param {string} keyword
  * @param {Rule} effect
  * @param {Rule} block
  *
- * @return {SeqRule}
+ * @returns {SeqRule}
  */
 function bodied_block(keyword, effect, block) {
   return seq(keyword, effect, field('body', block));
@@ -120,10 +104,10 @@ function bodied_block(keyword, effect, block) {
  * Creates a rule that matches a binary operator in between two rules.
  * The two rules are then assigned field names left and right respectively.
  *
- * @param {String} operator
+ * @param {string} operator
  * @param {Rule} rule
  *
- * @return {SeqRule}
+ * @returns {SeqRule}
  */
 function binary_operator(operator, rule) {
   return seq(field('left', rule), operator, field('right', rule));
@@ -150,33 +134,19 @@ module.exports = grammar({
   rules: {
     source_file: $ => repeat(choice($.use_statement, $._item)),
 
-    _item: $ => choice(
-      seq($.assignment, ';'),
-      $._statement,
-      $.module_item,
-      $.function_item,
-    ),
-
-    // modules
-    module_item: $ => seq(
-      'module',
-      field('name', $.identifier),
-      field('parameters', $.parameters_declaration),
-      field('body', $._statement),
-    ),
-    parameters_declaration: $ => parens(seq(commaSep($._parameter_declaration), optional(','))),
-    // TODO: segment assignment so that parameters can have the LHS highlighted as @parameter
-    // and the RHS as either @variable or @constant
-    _parameter_declaration: $ => choice(alias($._variable_name, $.parameter), $.assignment),
-
-    // function_item diffeers from  $.function_lit which defines anonymous functions/ function literals:
-    // https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules#Function_literals
-    function_item: $ => seq(
-      'function',
-      field('name', $.identifier),
-      field('parameters', $.parameters_declaration),
-      '=', $.expression,
-      ';'
+    // expressions are syntax trees that result in values (not objects)
+    expression: $ => choice(
+      $.parenthesized_expression,
+      $.unary_expression,
+      $.binary_expression,
+      $.ternary_expression,
+      $.let_expression,
+      $.function_call,
+      $.index_expression,
+      $.dot_index_expression,
+      $.assert_expression,
+      $.literal,
+      $._variable_name,
     ),
 
     // statements are language constructs that can create objects
@@ -193,6 +163,50 @@ module.exports = grammar({
       $.assert_statement,
       ';',
     ),
+    _item: $ => choice(
+      $.var_declaration,
+      $._statement,
+      $.module_item,
+      $.function_item,
+    ),
+
+    parameter: $ => choice(
+      $._variable_name,
+      $.assignment,
+    ),
+
+    parameters: $ => seq(
+      '(',
+      sepBy(',', $.parameter),
+      optional(','),
+      ')',
+    ),
+
+    // variable declaration
+    var_declaration: $ =>
+      seq($.assignment, ';'),
+
+    // modules
+    module_item: $ => seq(
+      'module',
+      field('name', $.identifier),
+      field('parameters', $.parameters),
+      field('body', $._statement),
+    ),
+    // TODO: segment assignment so that parameters can have the LHS highlighted as @parameter
+    // and the RHS as either @variable or @constant
+    _parameter_declaration: $ => choice(alias($._variable_name, $.parameter), $.assignment),
+
+    // function_item diffeers from  $.function_lit which defines anonymous functions/ function literals:
+    // https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules#Function_literals
+    function_item: $ => seq(
+      'function',
+      field('name', $.identifier),
+      field('parameters', $.parameters),
+      '=', $.expression,
+      ';',
+    ),
+
 
     // use/include statements
     // These are called statements, but use statements aren't included in
@@ -206,27 +220,31 @@ module.exports = grammar({
       '=',
       field('right', $.expression),
     ),
-    union_block: $ => curlies(repeat($._item)),
+    union_block: $ => seq(
+      '{',
+      repeat($._item),
+      '}',
+    ),
 
     // control-flow blocks
     for_block: $ => bodied_block(
       'for',
-      $.parenthesized_assignments,
+      $.assignments,
       $._statement,
     ),
     intersection_for_block: $ => bodied_block(
       'intersection_for',
-      $.parenthesized_assignments,
+      $.assignments,
       $._statement,
     ),
     let_block: $ => bodied_block(
       'let',
-      $.parenthesized_assignments,
+      $.assignments,
       $._statement,
     ),
     assign_block: $ => bodied_block(
       'assign',
-      $.parenthesized_assignments,
+      $.assignments,
       $._statement,
     ),
     if_block: $ => prec.right(seq(
@@ -246,7 +264,7 @@ module.exports = grammar({
     ),
     arguments: $ => parens(commaSep(choice($.expression, $.assignment), true)),
 
-    parenthesized_assignments: $ => parens(commaSep($.assignment)),
+    assignments: $ => seq('(', sepBy(',', $.assignment), ')'),
     parenthesized_expression: $ => parens($.expression),
     condition_update_clause: $ => parens(seq(
       field('initializer', commaSep($.assignment)), ';',
@@ -254,21 +272,7 @@ module.exports = grammar({
       field('update', commaSep($.assignment)),
     )),
 
-    // expressions are syntax trees that result in values (not objects)
-    expression: $ => choice(
-      $.parenthesized_expression,
-      $.unary_expression,
-      $.binary_expression,
-      $.ternary_expression,
-      $.let_expression,
-      $.function_call,
-      $.index_expression,
-      $.dot_index_expression,
-      $.assert_expression,
-      $.literal,
-      $._variable_name,
-    ),
-    let_expression: $ => bodied_block('let', $.parenthesized_assignments, $.expression),
+    let_expression: $ => bodied_block('let', $.assignments, $.expression),
 
     // atoms that create immediate values
     literal: $ => choice(
@@ -284,14 +288,16 @@ module.exports = grammar({
     // compound atoms that are still literals
     function_lit: $ => seq(
       'function',
-      field('parameters', $.parameters_declaration),
+      field('parameters', $.parameters),
       field('body', $.expression),
     ),
-    range: $ => brackets(seq(
+    range: $ => seq(
+      '[',
       field('start', $.expression),
       optional(seq(':', field('increment', $.expression))),
       ':', field('end', $.expression),
-    )),
+      ']',
+    ),
 
     list: $ => brackets(seq(commaSep($._list_cell, true))),
     _list_cell: $ => choice($.expression, $.each, $.list_comprehension),
@@ -306,7 +312,7 @@ module.exports = grammar({
       choice($.for_clause, $.if_clause),
     ),
     for_clause: $ => seq('for',
-      choice($.parenthesized_assignments, $.condition_update_clause),
+      choice($.assignments, $.condition_update_clause),
       $._comprehension_cell,
     ),
     if_clause: $ => prec.right(seq(
@@ -326,7 +332,7 @@ module.exports = grammar({
       )),
     index_expression: $ => prec(10, seq(
       field('value', $.expression),
-      brackets(field('index', $.expression)),
+      seq('[', $.expression, ']'),
     )),
     dot_index_expression: $ => prec(10, seq(
       field('value', $.expression), '.',
@@ -353,7 +359,7 @@ module.exports = grammar({
       prec.left(7, binary_operator('%', $.expression)),
       prec.left(8, binary_operator('^', $.expression)),
     ),
-    ternary_expression: $ => prec.right(1, seq(
+    ternary_expression: ($) => prec.right(1, seq(
       field('condition', $.expression), '?',
       field('consequence', $.expression), ':',
       field('alternative', $.expression),
@@ -381,13 +387,13 @@ module.exports = grammar({
     _variable_name: $ => choice($.identifier, $.special_variable),
 
     string: _ => seq(
-          '"',
-          repeat(choice(
-            token.immediate(prec(1, /[^"\\]+/)),
-            '\\',
-          )),
-          '"'
-        ),
+      '"',
+      repeat(choice(
+        token.immediate(prec(1, /[^"\\]+/)),
+        '\\',
+      )),
+      '"',
+    ),
     number: $ => choice($.decimal, $.float),
     decimal: _ => token(/-?\d+/),
     float: _ => token(/-?(\d+(\.\d+)?|\.\d+)(e-?\d+)?/),
@@ -397,11 +403,11 @@ module.exports = grammar({
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     block_comment: _ =>
       token(
-      seq(
-        '/*',
-        /[^*]*\*+([^/*][^*]*\*+)*/,
-        '/',
-    )),
+        seq(
+          '/*',
+          /[^*]*\*+([^/*][^*]*\*+)*/,
+          '/',
+        )),
     line_comment: $ => seq('//', /.*/),
     comment: $ => choice(
       $.line_comment,
@@ -409,3 +415,28 @@ module.exports = grammar({
     ),
   },
 });
+
+/**
+ * Creates a rule to match one or more of the rules separated by the separator.
+ *
+ * @param {RuleOrLiteral} sep - The separator to use.
+ * @param {RuleOrLiteral} rule
+ *
+ * @returns {SeqRule}
+ */
+function sepBy1(sep, rule) {
+  return seq(rule, repeat(seq(sep, rule)));
+}
+
+
+/**
+ * Creates a rule to optionally match one or more of the rules separated by the separator.
+ *
+ * @param {RuleOrLiteral} sep - The separator to use.
+ * @param {RuleOrLiteral} rule
+ *
+ * @returns {ChoiceRule}
+ */
+function sepBy(sep, rule) {
+  return optional(sepBy1(sep, rule));
+}

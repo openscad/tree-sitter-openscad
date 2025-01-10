@@ -1,5 +1,5 @@
 [
-  (module_declaration)
+  (module_item)
   (union_block)
   (if_block)
   (for_block)
@@ -11,6 +11,6 @@
 ] @indent.end
 
 (arguments ")" @indent.branch)
-(parameters_declaration ")" @indent.branch)
+(parameters ")" @indent.branch)
 
 [(line_comment) (block_comment)] @indent.ignore

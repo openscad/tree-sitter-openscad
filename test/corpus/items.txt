@@ -39,36 +39,40 @@ module comma1(x,) {}
   (use_statement
     (include_path))
   (block_comment)
-  (assignment
-    (identifier)
-    (decimal))
+  (var_declaration
+    (assignment
+      (identifier)
+      (decimal)))
   (line_comment)
-  (assignment
-    (identifier)
-    (boolean))
+  (var_declaration
+    (assignment
+      (identifier)
+      (boolean)))
   (function_item
     (identifier)
-    (parameters_declaration
+    (parameters
       (parameter
         (identifier)))
     (binary_expression
       (identifier)
       (identifier)))
-  (module_declaration
+  (module_item
     (identifier)
-    (parameters_declaration
+    (parameters
       (parameter
         (identifier))
-      (assignment
-        (identifier)
-        (function_call
+      (parameter
+        (assignment
           (identifier)
-          (arguments
-            (decimal))))
-      (assignment
-        (special_variable
-          (identifier))
-        (decimal)))
+          (function_call
+            (identifier)
+            (arguments
+              (decimal)))))
+      (parameter
+        (assignment
+          (special_variable
+            (identifier))
+          (decimal))))
     (transform_chain
       (module_call
         (identifier)
@@ -79,27 +83,27 @@ module comma1(x,) {}
           (assignment
             (identifier)
             (identifier))))))
-  (module_declaration
+  (module_item
     (identifier)
-    (parameters_declaration)
+    (parameters)
     (union_block))
   (function_item
     (identifier)
-    (parameters_declaration)
+    (parameters)
     (decimal))
   (function_item
     (identifier)
-    (parameters_declaration
+    (parameters
       (parameter
         (identifier)))
     (decimal))
-  (module_declaration
+  (module_item
     (identifier)
-    (parameters_declaration)
+    (parameters)
     (union_block))
-  (module_declaration
+  (module_item
     (identifier)
-    (parameters_declaration
+    (parameters
       (parameter
         (identifier)))
     (union_block)))
@@ -117,24 +121,24 @@ module extern_module() include <other_file.scad>
 --------------------------------------------------------------------------------
 
 (source_file
-  (module_declaration
+  (module_item
     name: (identifier)
-    parameters: (parameters_declaration)
+    parameters: (parameters)
     body: (union_block
       (function_item
         name: (identifier)
-        parameters: (parameters_declaration)
+        parameters: (parameters)
         (undef))
-      (module_declaration
+      (module_item
         name: (identifier)
-        parameters: (parameters_declaration)
+        parameters: (parameters)
         body: (transform_chain
           (module_call
             name: (identifier)
             arguments: (arguments))))))
-  (module_declaration
+  (module_item
     name: (identifier)
-    parameters: (parameters_declaration)
+    parameters: (parameters)
     body: (include_statement
       (include_path))))
 
@@ -156,12 +160,13 @@ module my_cylinder() {
 
 (source_file
   (block_comment)
-  (assignment
-    (identifier)
-    (decimal))
+  (var_declaration
+    (assignment
+      (identifier)
+      (decimal)))
   (function_item
     (identifier)
-    (parameters_declaration
+    (parameters
       (parameter
         (identifier)))
     (block_comment)
@@ -169,9 +174,9 @@ module my_cylinder() {
       (identifier)
       (decimal))
     (line_comment))
-  (module_declaration
+  (module_item
     (identifier)
-    (parameters_declaration)
+    (parameters)
     (union_block
       (line_comment)
       (transform_chain
