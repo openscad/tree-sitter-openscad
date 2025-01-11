@@ -2,6 +2,9 @@
 Escaped string
 ================================================================================
 esc = "\\";
+multi_esc = "dir must be a 3-vector or one of \"X\", \"Y\", or \"Z\"";
+esc_types = "The quick brown fox \tjumps \"over\" the lazy dog.\rThe quick brown fox.\nThe \\lazy\\
+ dog.";
 // comment with double quote "
 --------------------------------------------------------------------------------
 
@@ -9,7 +12,29 @@ esc = "\\";
   (var_declaration
     (assignment
       (identifier)
-      (string)))
+      (string
+        (escape_sequence))))
+  (var_declaration
+    (assignment
+      (identifier)
+      (string
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence))))
+  (var_declaration
+    (assignment
+      (identifier)
+      (string
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence))))
   (line_comment))
 
 ================================================================================
@@ -38,7 +63,8 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
   (var_declaration
     (assignment
       (identifier)
-      (string)))
+      (string
+        (escape_sequence))))
   (var_declaration
     (assignment
       (identifier)

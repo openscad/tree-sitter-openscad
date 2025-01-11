@@ -2,7 +2,7 @@
 
 "include" @keyword.import
 
-(include_path) @string
+(include_path) @string.special.path
 
 ; Functions
 
@@ -111,11 +111,9 @@
 ; Literals
 
 (decimal) @number
-
 (float) @number.float
-
 (string) @string
-
+(escape_sequence) @string.escape
 (boolean) @boolean
 
 ; Misc

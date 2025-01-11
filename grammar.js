@@ -385,15 +385,29 @@ module.exports = grammar({
     identifier: _ => /[a-zA-Z_]\w*/,
     special_variable: $ => seq('$', $.identifier),
     _variable_name: $ => choice($.identifier, $.special_variable),
+    // https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/General#Strings
+    // const ESCAPE_SEQUENCE = token(/\\([nrt"\\]|(\r?\n))/);
+    escape_sequence: _ => token.immediate(
+      seq('\\',
+        choice(
+          /[^xu]/,
+          /[nrt"\\]/,
+          /u[0-9a-fA-F]{4}/,
+          /u\{[0-9a-fA-F]+\}/,
+          /x[0-9a-fA-F]{2}/,
+        ),
+      )),
 
-    string: _ => seq(
+
+    string: $ => seq(
       '"',
       repeat(choice(
         token.immediate(prec(1, /[^"\\]+/)),
-        '\\',
+        $.escape_sequence,
       )),
       '"',
     ),
+
     number: $ => choice($.decimal, $.float),
     decimal: _ => token(/-?\d+/),
     float: _ => token(/-?(\d+(\.\d+)?|\.\d+)(e-?\d+)?/),
