@@ -255,24 +255,6 @@
         }
       ]
     },
-    "_parameter_declaration": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_variable_name"
-          },
-          "named": true,
-          "value": "parameter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assignment"
-        }
-      ]
-    },
     "function_item": {
       "type": "SEQ",
       "members": [
@@ -345,7 +327,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "left",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "_variable_name"
@@ -357,7 +339,7 @@
         },
         {
           "type": "FIELD",
-          "name": "right",
+          "name": "value",
           "content": {
             "type": "SYMBOL",
             "name": "expression"
@@ -1244,7 +1226,7 @@
         "members": [
           {
             "type": "FIELD",
-            "name": "function",
+            "name": "name",
             "content": {
               "type": "SYMBOL",
               "name": "expression"

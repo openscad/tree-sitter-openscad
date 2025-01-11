@@ -170,6 +170,8 @@ module.exports = grammar({
       $.function_item,
     ),
 
+    // TODO: segment assignment so that parameters can have the LHS highlighted as @parameter
+    // and the RHS as either @variable or @constant
     parameter: $ => choice(
       $._variable_name,
       $.assignment,
@@ -193,9 +195,6 @@ module.exports = grammar({
       field('parameters', $.parameters),
       field('body', $._statement),
     ),
-    // TODO: segment assignment so that parameters can have the LHS highlighted as @parameter
-    // and the RHS as either @variable or @constant
-    _parameter_declaration: $ => choice(alias($._variable_name, $.parameter), $.assignment),
 
     // function_item diffeers from  $.function_lit which defines anonymous functions/ function literals:
     // https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules#Function_literals
@@ -216,9 +215,9 @@ module.exports = grammar({
     use_statement: $ => seq('use', $.include_path),
     include_path: _ => /<[^>]*>/,
     assignment: $ => seq(
-      field('left', $._variable_name),
+      field('name', $._variable_name),
       '=',
-      field('right', $.expression),
+      field('value', $.expression),
     ),
     union_block: $ => seq(
       '{',
@@ -327,7 +326,7 @@ module.exports = grammar({
     // operations on expressions
     function_call: $ => prec(10,
       seq(
-        field('function', $.expression),
+        field('name', $.expression),
         field('arguments', $.arguments),
       )),
     index_expression: $ => prec(10, seq(

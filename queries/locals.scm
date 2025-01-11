@@ -5,7 +5,7 @@
 )
 
 (
-  (assignment left: (identifier) @local.definition.var)
+  (assignment name: (identifier) @local.definition.var)
 )
 
 (((parameter) (identifier)) @local.definition.var)

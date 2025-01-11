@@ -326,7 +326,7 @@
     "type": "assignment",
     "named": true,
     "fields": {
-      "left": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -340,7 +340,7 @@
           }
         ]
       },
-      "right": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -598,7 +598,7 @@
           }
         ]
       },
-      "function": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
