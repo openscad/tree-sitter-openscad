@@ -69,33 +69,33 @@
 ; Builtins
 (module_call
   name: (identifier) @function.builtin
-  (#any-of?
-  @function.builtin
-  "union"
-  "difference"
-  "intersection"
-  "circle"
-  "square"
-  "polygon"
-  "text"
-  "projection"
-  "sphere"
-  "cube"
-  "cylinder"
-  "polyhedron"
-  "linear_extrude"
-  "rotate_extrude"
-  "surface"
-  "translate"
-  "rotate"
-  "scale"
-  "resize"
-  "mirror"
-  "multmatrix"
-  "color"
-  "offset"
-  "hull"
-  "minkowski")
+  (#any-of? @function.builtin
+    "union"
+    "difference"
+    "intersection"
+    "circle"
+    "square"
+    "polygon"
+    "text"
+    "projection"
+    "sphere"
+    "cube"
+    "cylinder"
+    "polyhedron"
+    "linear_extrude"
+    "rotate_extrude"
+    "surface"
+    "translate"
+    "rotate"
+    "scale"
+    "resize"
+    "mirror"
+    "multmatrix"
+    "color"
+    "offset"
+    "hull"
+    "minkowski"
+  )
 )
 (
   (identifier) @identifier

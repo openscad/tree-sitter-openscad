@@ -126,7 +126,7 @@ module.exports = grammar({
     $.literal,
     $.expression,
     $.number,
-    $.comment,
+    $.statement,
   ],
 
   word: $ => $.identifier,
@@ -150,7 +150,7 @@ module.exports = grammar({
     ),
 
     // statements are language constructs that can create objects
-    _statement: $ => choice(
+    statement: $ => choice(
       $.for_block,
       $.intersection_for_block,
       $.if_block,
@@ -165,7 +165,7 @@ module.exports = grammar({
     ),
     _item: $ => choice(
       $.var_declaration,
-      $._statement,
+      $.statement,
       $.module_item,
       $.function_item,
     ),
@@ -193,7 +193,7 @@ module.exports = grammar({
       'module',
       field('name', $.identifier),
       field('parameters', $.parameters),
-      field('body', $._statement),
+      field('body', $.statement),
     ),
 
     // function_item diffeers from  $.function_lit which defines anonymous functions/ function literals:
@@ -209,7 +209,7 @@ module.exports = grammar({
 
     // use/include statements
     // These are called statements, but use statements aren't included in
-    // $._statement because they can't be used in all the same places as other
+    // $.statement because they can't be used in all the same places as other
     // statements
     include_statement: $ => seq('include', $.include_path),
     use_statement: $ => seq('use', $.include_path),
@@ -229,34 +229,34 @@ module.exports = grammar({
     for_block: $ => bodied_block(
       'for',
       $.assignments,
-      $._statement,
+      $.statement,
     ),
     intersection_for_block: $ => bodied_block(
       'intersection_for',
       $.assignments,
-      $._statement,
+      $.statement,
     ),
     let_block: $ => bodied_block(
       'let',
       $.assignments,
-      $._statement,
+      $.statement,
     ),
     assign_block: $ => bodied_block(
       'assign',
       $.assignments,
-      $._statement,
+      $.statement,
     ),
     if_block: $ => prec.right(seq(
       'if',
       field('condition', $.parenthesized_expression),
-      field('consequence', $._statement),
-      optional(field('alternative', seq('else', $._statement))),
+      field('consequence', $.statement),
+      optional(field('alternative', seq('else', $.statement))),
     )),
 
     // function calls
-    modifier_chain: $ => seq($.modifier, $._statement),
+    modifier_chain: $ => seq($.modifier, $.statement),
     modifier: _ => choice('*', '!', '#', '%'),
-    transform_chain: $ => seq($.module_call, $._statement),
+    transform_chain: $ => seq($.module_call, $.statement),
     module_call: $ => seq(
       field('name', $.identifier),
       field('arguments', $.arguments),
@@ -377,7 +377,7 @@ module.exports = grammar({
         )),
       )),
     )),
-    assert_statement: $ => seq($._assert_clause, $._statement),
+    assert_statement: $ => seq($._assert_clause, $.statement),
     assert_expression: $ => seq($._assert_clause, $.expression),
 
     // valid names for variables, functions, and modules
@@ -422,10 +422,6 @@ module.exports = grammar({
           '/',
         )),
     line_comment: $ => seq('//', /.*/),
-    comment: $ => choice(
-      $.line_comment,
-      $.block_comment,
-    ),
   },
 });
 

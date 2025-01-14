@@ -102,6 +102,56 @@
     ]
   },
   {
+    "type": "statement",
+    "named": true,
+    "subtypes": [
+      {
+        "type": ";",
+        "named": false
+      },
+      {
+        "type": "assert_statement",
+        "named": true
+      },
+      {
+        "type": "assign_block",
+        "named": true
+      },
+      {
+        "type": "for_block",
+        "named": true
+      },
+      {
+        "type": "if_block",
+        "named": true
+      },
+      {
+        "type": "include_statement",
+        "named": true
+      },
+      {
+        "type": "intersection_for_block",
+        "named": true
+      },
+      {
+        "type": "let_block",
+        "named": true
+      },
+      {
+        "type": "modifier_chain",
+        "named": true
+      },
+      {
+        "type": "transform_chain",
+        "named": true
+      },
+      {
+        "type": "union_block",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "arguments",
     "named": true,
     "fields": {},
@@ -211,46 +261,10 @@
     },
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "include_statement",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "modifier_chain",
-          "named": true
-        },
-        {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
+          "type": "statement",
           "named": true
         }
       ]
@@ -265,47 +279,7 @@
         "required": true,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -496,47 +470,7 @@
         "required": true,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -681,51 +615,11 @@
         "required": false,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
             "type": "else",
             "named": false
           },
           {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -745,47 +639,7 @@
         "required": true,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -910,47 +764,7 @@
         "required": true,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -976,47 +790,7 @@
         "required": true,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -1120,47 +894,11 @@
       "required": true,
       "types": [
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "include_statement",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
           "type": "modifier",
           "named": true
         },
         {
-          "type": "modifier_chain",
-          "named": true
-        },
-        {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
+          "type": "statement",
           "named": true
         }
       ]
@@ -1201,47 +939,7 @@
         "required": true,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "assert_statement",
-            "named": true
-          },
-          {
-            "type": "assign_block",
-            "named": true
-          },
-          {
-            "type": "for_block",
-            "named": true
-          },
-          {
-            "type": "if_block",
-            "named": true
-          },
-          {
-            "type": "include_statement",
-            "named": true
-          },
-          {
-            "type": "intersection_for_block",
-            "named": true
-          },
-          {
-            "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "modifier_chain",
-            "named": true
-          },
-          {
-            "type": "transform_chain",
-            "named": true
-          },
-          {
-            "type": "union_block",
+            "type": "statement",
             "named": true
           }
         ]
@@ -1367,39 +1065,7 @@
       "required": false,
       "types": [
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
           "type": "function_item",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "include_statement",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "modifier_chain",
           "named": true
         },
         {
@@ -1407,11 +1073,7 @@
           "named": true
         },
         {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
+          "type": "statement",
           "named": true
         },
         {
@@ -1500,47 +1162,11 @@
       "required": true,
       "types": [
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "include_statement",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "modifier_chain",
-          "named": true
-        },
-        {
           "type": "module_call",
           "named": true
         },
         {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
+          "type": "statement",
           "named": true
         }
       ]
@@ -1570,39 +1196,7 @@
       "required": false,
       "types": [
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
           "type": "function_item",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "include_statement",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "modifier_chain",
           "named": true
         },
         {
@@ -1610,11 +1204,7 @@
           "named": true
         },
         {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
+          "type": "statement",
           "named": true
         },
         {
