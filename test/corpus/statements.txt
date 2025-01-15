@@ -189,7 +189,7 @@ Modifiers
 ================================================================================
 ! cylinder();
 * linear_extrude(4) text("Hello");
-rotate([0, 90, 0]) # cylinder();
+rotate([0, 90, 0]) !# cylinder();
 % cube();
 --------------------------------------------------------------------------------
 
@@ -219,6 +219,7 @@ rotate([0, 90, 0]) # cylinder();
           (decimal)
           (decimal))))
     (transform_chain
+      (modifier)
       (modifier)
       (module_call
         (identifier)

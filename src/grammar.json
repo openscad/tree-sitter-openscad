@@ -69,52 +69,47 @@
       ]
     },
     "statement": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "for_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "intersection_for_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "if_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "let_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "assign_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "union_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "transform_chain"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "include_statement"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "assert_statement"
-            },
-            {
-              "type": "STRING",
-              "value": ";"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "for_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "intersection_for_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "let_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assign_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "union_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "transform_chain"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "include_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assert_statement"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
@@ -531,16 +526,11 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "modifier"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "modifier"
+          }
         },
         {
           "type": "SYMBOL",

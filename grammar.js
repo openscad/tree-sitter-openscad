@@ -255,7 +255,7 @@ module.exports = grammar({
 
     modifier: _ => choice('*', '!', '#', '%'),
     transform_chain: $ => seq(
-      optional($.modifier),
+      repeat($.modifier),
       $.module_call,
       $.statement,
     ),
