@@ -43,6 +43,8 @@
   "assign"
   "use"
   "each"
+  (assert_statement "assert")
+  (assert_expression "assert")
 ] @keyword
 
 ; Operators
@@ -66,35 +68,35 @@
   "="
 ] @operator
 
-; Builtins
+; Builtin modules
 (module_call
   name: (identifier) @function.builtin
   (#any-of? @function.builtin
-    "union"
-    "difference"
-    "intersection"
     "circle"
-    "square"
-    "polygon"
-    "text"
-    "projection"
-    "sphere"
+    "color"
     "cube"
     "cylinder"
-    "polyhedron"
+    "difference"
+    "hull"
+    "intersection"
     "linear_extrude"
-    "rotate_extrude"
-    "surface"
-    "translate"
-    "rotate"
-    "scale"
-    "resize"
+    "minkowski"
     "mirror"
     "multmatrix"
-    "color"
     "offset"
-    "hull"
-    "minkowski"
+    "polygon"
+    "polyhedron"
+    "projection"
+    "resize"
+    "rotate"
+    "rotate_extrude"
+    "scale"
+    "sphere"
+    "square"
+    "surface"
+    "text"
+    "translate"
+    "union"
   )
 )
 (
@@ -125,9 +127,14 @@
 (boolean) @boolean
 
 ; Misc
-[
-  "#"
-] @punctuation.special
+(modifier
+  [
+    "*"
+    "!"
+    "#"
+    "%"
+  ] @keyword.modifier
+)
 ["{" "}"] @punctuation.bracket
 ["(" ")"] @punctuation.bracket
 ["[" "]"] @punctuation.bracket

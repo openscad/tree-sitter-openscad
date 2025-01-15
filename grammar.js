@@ -150,19 +150,19 @@ module.exports = grammar({
     ),
 
     // statements are language constructs that can create objects
-    statement: $ => choice(
-      $.for_block,
-      $.intersection_for_block,
-      $.if_block,
-      $.let_block,
-      $.assign_block,
-      $.union_block,
-      $.modifier_chain,
-      $.transform_chain,
-      $.include_statement,
-      $.assert_statement,
-      ';',
-    ),
+    statement: $ =>
+      choice(
+        $.for_block,
+        $.intersection_for_block,
+        $.if_block,
+        $.let_block,
+        $.assign_block,
+        $.union_block,
+        $.transform_chain,
+        $.include_statement,
+        $.assert_statement,
+        ';',
+      ),
     _item: $ => choice(
       $.var_declaration,
       $.statement,
@@ -253,10 +253,12 @@ module.exports = grammar({
       optional(field('alternative', seq('else', $.statement))),
     )),
 
-    // function calls
-    modifier_chain: $ => seq($.modifier, $.statement),
     modifier: _ => choice('*', '!', '#', '%'),
-    transform_chain: $ => seq($.module_call, $.statement),
+    transform_chain: $ => seq(
+      optional($.modifier),
+      $.module_call,
+      $.statement,
+    ),
     module_call: $ => seq(
       field('name', $.identifier),
       field('arguments', $.arguments),

@@ -138,10 +138,6 @@
         "named": true
       },
       {
-        "type": "modifier_chain",
-        "named": true
-      },
-      {
         "type": "transform_chain",
         "named": true
       },
@@ -886,25 +882,6 @@
     "fields": {}
   },
   {
-    "type": "modifier_chain",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "modifier",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "module_call",
     "named": true,
     "fields": {
@@ -1161,6 +1138,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "modifier",
+          "named": true
+        },
         {
           "type": "module_call",
           "named": true

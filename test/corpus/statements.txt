@@ -194,24 +194,22 @@ rotate([0, 90, 0]) # cylinder();
 --------------------------------------------------------------------------------
 
 (source_file
-  (modifier_chain
+  (transform_chain
     (modifier)
-    (transform_chain
-      (module_call
-        (identifier)
-        (arguments))))
-  (modifier_chain
+    (module_call
+      (identifier)
+      (arguments)))
+  (transform_chain
     (modifier)
+    (module_call
+      (identifier)
+      (arguments
+        (decimal)))
     (transform_chain
       (module_call
         (identifier)
         (arguments
-          (decimal)))
-      (transform_chain
-        (module_call
-          (identifier)
-          (arguments
-            (string))))))
+          (string)))))
   (transform_chain
     (module_call
       (identifier)
@@ -220,18 +218,16 @@ rotate([0, 90, 0]) # cylinder();
           (decimal)
           (decimal)
           (decimal))))
-    (modifier_chain
-      (modifier)
-      (transform_chain
-        (module_call
-          (identifier)
-          (arguments)))))
-  (modifier_chain
-    (modifier)
     (transform_chain
+      (modifier)
       (module_call
         (identifier)
-        (arguments)))))
+        (arguments))))
+  (transform_chain
+    (modifier)
+    (module_call
+      (identifier)
+      (arguments))))
 
 ================================================================================
 Assertions

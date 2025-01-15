@@ -69,51 +69,52 @@
       ]
     },
     "statement": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "for_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "intersection_for_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "let_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assign_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "union_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "modifier_chain"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "transform_chain"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "include_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assert_statement"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "for_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "intersection_for_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "if_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "let_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "assign_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "union_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "transform_chain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "include_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "assert_statement"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            }
+          ]
         }
       ]
     },
@@ -505,19 +506,6 @@
         ]
       }
     },
-    "modifier_chain": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "modifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "statement"
-        }
-      ]
-    },
     "modifier": {
       "type": "CHOICE",
       "members": [
@@ -542,6 +530,18 @@
     "transform_chain": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "SYMBOL",
           "name": "module_call"
