@@ -249,13 +249,33 @@ for (y = [3:5])
       (identifier)
       (decimal)))
   (assert_statement
-    (binary_expression
-      (identifier)
-      (decimal))
+    (arguments))
+  (assert_statement
+    (arguments
+      (string)))
+  (assert_statement
+    (arguments
+      (binary_expression
+        (identifier)
+        (decimal)))
     (transform_chain
       (module_call
         (identifier)
         (arguments))))
+  (assert_statement
+    (arguments
+      (assignment
+        (identifier)
+        (binary_expression
+          (identifier)
+          (identifier)))
+      (assignment
+        (identifier)
+        (function_call
+          (identifier)
+          (arguments
+            (string)
+            (decimal))))))
   (for_block
     (assignments
       (assignment
@@ -264,11 +284,13 @@ for (y = [3:5])
           (decimal)
           (decimal))))
     (assert_statement
-      (assert_expression
-        (binary_expression
-          (identifier)
-          (identifier)))
-      (string)
+      (arguments
+        (assert_expression
+          (arguments)
+          (binary_expression
+            (identifier)
+            (identifier)))
+        (string))
       (transform_chain
         (module_call
           (identifier)

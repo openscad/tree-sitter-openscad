@@ -393,9 +393,8 @@ module.exports = grammar({
       field('arguments', $.arguments),
       field('statement', $.statement)
     ),
-    // assert followthroughs can be optional:
-    // assert(true);
-    // let check = assert(true);
+    // assert tail expressions can be optional:
+    // check = assert(true);
     assert_expression: $ => prec.right(seq(
       'assert',
       field('arguments', $.arguments),

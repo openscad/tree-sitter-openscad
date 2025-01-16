@@ -359,6 +359,7 @@ Assert Expressions
 ================================================================================
 x = assert(true, false, "extra1", "extra2") 5;
 undef_assert = assert();
+parameter_assert = assert(condition = x != 5, message = str("evaluated: ", x));
 fn = function(x) assert(x) x;
 echo(assert(true) assert(false) true);
 --------------------------------------------------------------------------------
@@ -368,11 +369,34 @@ echo(assert(true) assert(false) true);
     (assignment
       (identifier)
       (assert_expression
-        (boolean)
-        (boolean)
-        (string)
-        (string)
+        (arguments
+          (boolean)
+          (boolean)
+          (string)
+          (string))
         (decimal))))
+  (var_declaration
+    (assignment
+      (identifier)
+      (assert_expression
+        (arguments))))
+  (var_declaration
+    (assignment
+      (identifier)
+      (assert_expression
+        (arguments
+          (assignment
+            (identifier)
+            (binary_expression
+              (identifier)
+              (decimal)))
+          (assignment
+            (identifier)
+            (function_call
+              (identifier)
+              (arguments
+                (string)
+                (identifier))))))))
   (var_declaration
     (assignment
       (identifier)
@@ -381,14 +405,17 @@ echo(assert(true) assert(false) true);
           (parameter
             (identifier)))
         (assert_expression
-          (identifier)
+          (arguments
+            (identifier))
           (identifier)))))
   (transform_chain
     (module_call
       (identifier)
       (arguments
         (assert_expression
-          (boolean)
+          (arguments
+            (boolean))
           (assert_expression
-            (boolean)
+            (arguments
+              (boolean))
             (boolean)))))))

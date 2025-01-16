@@ -27,6 +27,14 @@
   arguments: (arguments (assignment name: _ @variable.parameter))
 )
 
+; assertion statements/expression arguments behave similar to function calls
+(assert_expression
+  arguments: (arguments (assignment name: _ @variable.parameter))
+)
+(assert_statement
+  arguments: (arguments (assignment name: _ @variable.parameter))
+)
+
 ; Variables
 (parameter
   [_ @variable.parameter (assignment name: _ @variable.parameter)]
