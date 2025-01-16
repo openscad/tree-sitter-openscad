@@ -355,9 +355,10 @@ echo(function(y) y ? "first" : "second");
             (string)))))))
 
 ================================================================================
-Assertions
+Assert Expressions
 ================================================================================
 x = assert(true, false, "extra1", "extra2") 5;
+undef_assert = assert();
 fn = function(x) assert(x) x;
 echo(assert(true) assert(false) true);
 --------------------------------------------------------------------------------

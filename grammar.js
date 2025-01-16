@@ -372,15 +372,35 @@ module.exports = grammar({
     // same applies to expressions. So, this creates two parsers for the two
     // distinct conditions, but uses a shared parser for the text of the assert
     // clause itself.
-    _assert_clause: $ => seq('assert', parens(
-      optional(seq(field('condition', $.expression),
-        optional(seq(',', field('message', $.expression),
-          optional(seq(',', field('trailing_args', commaSep1($.expression)))),
-        )),
-      )),
+    _assert_clause: $ => seq(
+      'assert', '(',
+      optional($._assert_condition),
+      optional($._assert_message),
+      ')',
+    ),
+    _assert_condition: $ => seq(
+      optional(seq('condition', '=')),
+      field('condition', $.expression),
+    ),
+    _assert_message: $ => seq(
+      ',',
+      optional(seq('message', '=')),
+      field('message', $.expression),
+      optional(seq(',', field('trailing_args', commaSep1($.expression)))),
+    ),
+    assert_statement: $ => seq(
+      'assert',
+      field('arguments', $.arguments),
+      field('statement', $.statement)
+    ),
+    // assert followthroughs can be optional:
+    // assert(true);
+    // let check = assert(true);
+    assert_expression: $ => prec.right(seq(
+      'assert',
+      field('arguments', $.arguments),
+      optional(field('expression', $.expression))
     )),
-    assert_statement: $ => seq($._assert_clause, $.statement),
-    assert_expression: $ => seq($._assert_clause, $.expression),
 
     // valid names for variables, functions, and modules
     identifier: _ => /[a-zA-Z_]\w*/,

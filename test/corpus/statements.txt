@@ -231,10 +231,13 @@ rotate([0, 90, 0]) !# cylinder();
       (arguments))))
 
 ================================================================================
-Assertions
+Assert Statements
 ================================================================================
 x = 10;
+assert();
+assert("t1",);
 assert(x < 20) cube();
+assert(condition = a*b, message=str("msg: ", 5),);
 for (y = [3:5])
     assert(assert() y < x, "message")
         cylinder();

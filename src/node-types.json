@@ -170,100 +170,52 @@
     "type": "assert_expression",
     "named": true,
     "fields": {
-      "condition": {
+      "arguments": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "expression",
+            "type": "arguments",
             "named": true
           }
         ]
       },
-      "message": {
+      "expression": {
         "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "trailing_args": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
           {
             "type": "expression",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "assert_statement",
     "named": true,
     "fields": {
-      "condition": {
+      "arguments": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "expression",
+            "type": "arguments",
             "named": true
           }
         ]
       },
-      "message": {
+      "statement": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "trailing_args": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "expression",
+            "type": "statement",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "statement",
-          "named": true
-        }
-      ]
     }
   },
   {
