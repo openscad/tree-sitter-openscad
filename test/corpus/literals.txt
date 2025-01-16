@@ -147,8 +147,9 @@ complex_condition = [
 spliced = [for (x = [1:10]) x, for (y = [1, 2, 3]) y, for (z = [4, 5, 6]) z];
 nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
 grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
-// let_each = [for(i = [0:1]) let(a=90) each arc(angle=a)];
-// let_if = [for(i = [0:1]) let(a=360) if (is_def(isect) && isect!=seg[0]) isect];
+let_each = [for(i = [0:1]) let(a=90) each arc(angle=a)];
+let_for = [let (i=[0:1]) for(i = i) let(a=90) each arc(angle=a)];
+let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
 --------------------------------------------------------------------------------
 
 (source_file
@@ -360,8 +361,84 @@ grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
                         (identifier)))
                     (identifier)))))
             (identifier))))))
-  (line_comment)
-  (line_comment))
+  (var_declaration
+    (assignment
+      (identifier)
+      (list
+        (list_comprehension
+          (for_clause
+            (assignments
+              (assignment
+                (identifier)
+                (range
+                  (decimal)
+                  (decimal))))
+            (each
+              (let_prefix
+                (assignments
+                  (assignment
+                    (identifier)
+                    (decimal))))
+              (function_call
+                (identifier)
+                (arguments
+                  (assignment
+                    (identifier)
+                    (identifier))))))))))
+  (var_declaration
+    (assignment
+      (identifier)
+      (list
+        (list_comprehension
+          (for_clause
+            (let_prefix
+              (assignments
+                (assignment
+                  (identifier)
+                  (range
+                    (decimal)
+                    (decimal)))))
+            (assignments
+              (assignment
+                (identifier)
+                (identifier)))
+            (each
+              (let_prefix
+                (assignments
+                  (assignment
+                    (identifier)
+                    (decimal))))
+              (function_call
+                (identifier)
+                (arguments
+                  (assignment
+                    (identifier)
+                    (identifier))))))))))
+  (var_declaration
+    (assignment
+      (identifier)
+      (list
+        (list_comprehension
+          (for_clause
+            (assignments
+              (assignment
+                (identifier)
+                (range
+                  (decimal)
+                  (decimal))))
+            (list_comprehension
+              (if_clause
+                (let_prefix
+                  (assignments
+                    (assignment
+                      (identifier)
+                      (decimal))))
+                (parenthesized_expression
+                  (function_call
+                    (identifier)
+                    (arguments
+                      (identifier))))
+                (identifier)))))))))
 
 ================================================================================
 Numbers

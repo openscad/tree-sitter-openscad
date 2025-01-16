@@ -225,6 +225,7 @@ module.exports = grammar({
       '}',
     ),
 
+    // NOTE `for(i) i;` statement is currently possible but will ignore for now
     // control-flow blocks
     for_block: $ => bodied_block(
       'for',
@@ -307,16 +308,28 @@ module.exports = grammar({
       opt_grouping(parens, $.each),
       opt_grouping(parens, $.list_comprehension),
     ),
-    each: $ => seq('each', choice($.expression, $.list_comprehension)),
+    each: $ => seq(
+      optional($.let_prefix),
+      'each',
+      choice($.expression, $.list_comprehension)
+    ),
 
     list_comprehension: $ => seq(
       choice($.for_clause, $.if_clause),
     ),
-    for_clause: $ => seq('for',
+    // TODO dry up let variants
+    let_prefix: $ => seq(
+      'let',
+      $.assignments
+    ),
+    for_clause: $ => seq(
+      optional($.let_prefix),
+      'for',
       choice($.assignments, $.condition_update_clause),
       $._comprehension_cell,
     ),
     if_clause: $ => prec.right(seq(
+      optional($.let_prefix),
       'if',
       field('condition', $.parenthesized_expression),
       field('consequence', $._comprehension_cell),
