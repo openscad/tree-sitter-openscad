@@ -40,8 +40,10 @@
   [_ @variable.parameter (assignment name: _ @variable.parameter)]
 )
 (special_variable) @variable.builtin
+(undef) @constant.builtin
 
-; TODO: Types/Properties/
+; Types/Properties/
+(dot_index_expression index: (_) @variable.member)
 
 ; Keywords
 [
@@ -128,7 +130,7 @@
 ] @keyword.repeat
 
 ; Literals
-(decimal) @number
+(integer) @number
 (float) @number.float
 (string) @string
 (escape_sequence) @string.escape

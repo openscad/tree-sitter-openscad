@@ -20,8 +20,8 @@ spaced_negation = - 7;
     (assignment
       (identifier)
       (binary_expression
-        (decimal)
-        (decimal))))
+        (integer)
+        (integer))))
   (var_declaration
     (assignment
       (identifier)
@@ -38,7 +38,7 @@ spaced_negation = - 7;
       (function_call
         (identifier)
         (arguments
-          (decimal)))))
+          (integer)))))
   (var_declaration
     (assignment
       (identifier)
@@ -47,10 +47,10 @@ spaced_negation = - 7;
         (arguments
           (assignment
             (identifier)
-            (decimal))
+            (integer))
           (assignment
             (identifier)
-            (decimal))))))
+            (integer))))))
   (var_declaration
     (assignment
       (identifier)
@@ -59,37 +59,37 @@ spaced_negation = - 7;
           (binary_expression
             (binary_expression
               (binary_expression
-                (decimal)
-                (decimal))
-              (decimal))
-            (decimal))
-          (decimal))
-        (decimal))))
+                (integer)
+                (integer))
+              (integer))
+            (integer))
+          (integer))
+        (integer))))
   (var_declaration
     (assignment
       (identifier)
       (index_expression
         (list
-          (decimal)
-          (decimal)
-          (decimal)
-          (decimal))
-        (decimal))))
+          (integer)
+          (integer)
+          (integer)
+          (integer))
+        (integer))))
   (var_declaration
     (assignment
       (identifier)
       (dot_index_expression
         (list
-          (decimal)
-          (decimal)
-          (decimal)
-          (decimal))
+          (integer)
+          (integer)
+          (integer)
+          (integer))
         (identifier))))
   (var_declaration
     (assignment
       (identifier)
       (unary_expression
-        (decimal)))))
+        (integer)))))
 
 ================================================================================
 Logical Precedence
@@ -142,11 +142,11 @@ echo(true && 4 == 4);
   (var_declaration
     (assignment
       (identifier)
-      (decimal)))
+      (integer)))
   (var_declaration
     (assignment
       (identifier)
-      (decimal)))
+      (integer)))
   (transform_chain
     (module_call
       (identifier)
@@ -174,15 +174,15 @@ echo(true && 4 == 4);
             (function_call
               (identifier)
               (arguments
-                (decimal)))
+                (integer)))
             (function_call
               (identifier)
               (arguments
-                (decimal))))
+                (integer))))
           (function_call
             (identifier)
             (arguments
-              (decimal)))))))
+              (integer)))))))
   (transform_chain
     (module_call
       (identifier)
@@ -191,24 +191,24 @@ echo(true && 4 == 4);
           (function_call
             (identifier)
             (arguments
-              (decimal)))
+              (integer)))
           (binary_expression
             (function_call
               (identifier)
               (arguments
-                (decimal)))
+                (integer)))
             (function_call
               (identifier)
               (arguments
-                (decimal))))))))
+                (integer))))))))
   (transform_chain
     (module_call
       (identifier)
       (arguments
         (binary_expression
           (binary_expression
-            (decimal)
-            (decimal))
+            (integer)
+            (integer))
           (boolean)))))
   (transform_chain
     (module_call
@@ -217,8 +217,8 @@ echo(true && 4 == 4);
         (binary_expression
           (boolean)
           (binary_expression
-            (decimal)
-            (decimal)))))))
+            (integer)
+            (integer)))))))
 
 ================================================================================
 Mathematical Precedence
@@ -231,12 +231,12 @@ num = 5 + 4 * 3 ^ 2;
     (assignment
       (identifier)
       (binary_expression
-        (decimal)
+        (integer)
         (binary_expression
-          (decimal)
+          (integer)
           (binary_expression
-            (decimal)
-            (decimal)))))))
+            (integer)
+            (integer)))))))
 
 ================================================================================
 Function Precedence
@@ -280,7 +280,7 @@ indexer = function(v) v[0];
                 (identifier)))
             (identifier)))
         (arguments
-          (decimal)))))
+          (integer)))))
   (var_declaration
     (assignment
       (identifier)
@@ -314,7 +314,7 @@ indexer = function(v) v[0];
             (identifier)))
         (index_expression
           (identifier)
-          (decimal))))))
+          (integer))))))
 
 ================================================================================
 Functions and Ternaries
@@ -374,7 +374,7 @@ echo(assert(true) assert(false) true);
           (boolean)
           (string)
           (string))
-        (decimal))))
+        (integer))))
   (var_declaration
     (assignment
       (identifier)
@@ -389,7 +389,7 @@ echo(assert(true) assert(false) true);
             (identifier)
             (binary_expression
               (identifier)
-              (decimal)))
+              (integer)))
           (assignment
             (identifier)
             (function_call

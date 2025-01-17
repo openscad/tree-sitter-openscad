@@ -2182,7 +2182,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "decimal"
+          "name": "integer"
         },
         {
           "type": "SYMBOL",
@@ -2190,18 +2190,70 @@
         }
       ]
     },
-    "decimal": {
+    "integer": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "-?\\d+"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "-"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\d+"
+          }
+        ]
       }
     },
     "float": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "-?(\\d+(\\.\\d+)?|\\.\\d+)(e-?\\d+)?"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "-"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "(\\d+(\\.\\d+)?|\\.\\d+)"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[eE]-?\\d+?"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
       }
     },
     "boolean": {

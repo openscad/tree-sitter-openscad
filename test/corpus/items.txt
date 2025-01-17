@@ -42,7 +42,7 @@ module comma1(x,) {}
   (var_declaration
     (assignment
       (identifier)
-      (decimal)))
+      (integer)))
   (line_comment)
   (var_declaration
     (assignment
@@ -67,12 +67,12 @@ module comma1(x,) {}
           (function_call
             (identifier)
             (arguments
-              (decimal)))))
+              (integer)))))
       (parameter
         (assignment
           (special_variable
             (identifier))
-          (decimal))))
+          (integer))))
     (transform_chain
       (module_call
         (identifier)
@@ -90,13 +90,13 @@ module comma1(x,) {}
   (function_item
     (identifier)
     (parameters)
-    (decimal))
+    (integer))
   (function_item
     (identifier)
     (parameters
       (parameter
         (identifier)))
-    (decimal))
+    (integer))
   (module_item
     (identifier)
     (parameters)
@@ -163,7 +163,7 @@ module my_cylinder() {
   (var_declaration
     (assignment
       (identifier)
-      (decimal)))
+      (integer)))
   (function_item
     (identifier)
     (parameters
@@ -172,7 +172,7 @@ module my_cylinder() {
     (block_comment)
     (binary_expression
       (identifier)
-      (decimal))
+      (integer))
     (line_comment))
   (module_item
     (identifier)

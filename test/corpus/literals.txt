@@ -41,8 +41,10 @@ esc_types = "The quick brown fox \tjumps \"over\" the lazy dog.\rThe quick brown
 All Literals
 ================================================================================
 num = -4.3;
+ex_num = -4.3E-09;
 name = "Karl";
 esc = "\\";
+neg_ident = [-num];
 boolean = true;
 list = [1, 2, each [3, 4], [5, 6]];
 trailing_comma_list = [[1, 2,],];
@@ -60,6 +62,10 @@ check = assert();
   (var_declaration
     (assignment
       (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
       (string)))
   (var_declaration
     (assignment
@@ -69,34 +75,40 @@ check = assert();
   (var_declaration
     (assignment
       (identifier)
+      (list
+        (unary_expression
+          (identifier)))))
+  (var_declaration
+    (assignment
+      (identifier)
       (boolean)))
   (var_declaration
     (assignment
       (identifier)
       (list
-        (decimal)
-        (decimal)
+        (integer)
+        (integer)
         (each
           (list
-            (decimal)
-            (decimal)))
+            (integer)
+            (integer)))
         (list
-          (decimal)
-          (decimal)))))
+          (integer)
+          (integer)))))
   (var_declaration
     (assignment
       (identifier)
       (list
         (list
-          (decimal)
-          (decimal)))))
+          (integer)
+          (integer)))))
   (var_declaration
     (assignment
       (identifier)
       (range
-        (decimal)
+        (integer)
         (identifier)
-        (decimal))))
+        (integer))))
   (var_declaration
     (assignment
       (identifier)
@@ -118,16 +130,16 @@ check = assert();
             (condition_update_clause
               (assignment
                 (identifier)
-                (decimal))
+                (integer))
               (binary_expression
                 (identifier)
-                (decimal))
+                (integer))
               (assignment
                 (identifier)
                 (binary_expression
                   (identifier)
-                  (decimal))))
-            (decimal))))))
+                  (integer))))
+            (integer))))))
   (var_declaration
     (assignment
       (identifier)
@@ -163,8 +175,8 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (identifier))))))
   (var_declaration
     (assignment
@@ -176,8 +188,8 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (list_comprehension
               (if_clause
                 (parenthesized_expression
@@ -194,8 +206,8 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (list_comprehension
               (if_clause
                 (parenthesized_expression
@@ -215,25 +227,25 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
             (assignments
               (assignment
                 (identifier)
-                (decimal)))
+                (integer)))
             (list_comprehension
               (if_clause
                 (parenthesized_expression
                   (binary_expression
                     (identifier)
-                    (decimal)))
+                    (integer)))
                 (list_comprehension
                   (for_clause
                     (assignments
                       (assignment
                         (identifier)
-                        (decimal)))
+                        (integer)))
                     (list_comprehension
                       (if_clause
                         (parenthesized_expression
                           (binary_expression
                             (identifier)
-                            (decimal)))
+                            (integer)))
                         (identifier)
                         (identifier))))))))))))
   (var_declaration
@@ -246,27 +258,27 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (list_comprehension
               (if_clause
                 (parenthesized_expression
                   (binary_expression
                     (binary_expression
                       (identifier)
-                      (decimal))
-                    (decimal)))
+                      (integer))
+                    (integer)))
                 (identifier)
                 (list_comprehension
                   (if_clause
                     (parenthesized_expression
                       (binary_expression
                         (identifier)
-                        (decimal)))
+                        (integer)))
                     (binary_expression
                       (identifier)
-                      (decimal))
-                    (decimal))))))))))
+                      (integer))
+                    (integer))))))))))
   (var_declaration
     (assignment
       (identifier)
@@ -277,8 +289,8 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (identifier)))
         (list_comprehension
           (for_clause
@@ -286,9 +298,9 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (list
-                  (decimal)
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer)
+                  (integer))))
             (identifier)))
         (list_comprehension
           (for_clause
@@ -296,9 +308,9 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (list
-                  (decimal)
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer)
+                  (integer))))
             (identifier))))))
   (var_declaration
     (assignment
@@ -310,26 +322,26 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (list_comprehension
               (for_clause
                 (assignments
                   (assignment
                     (identifier)
                     (list
-                      (decimal)
-                      (decimal)
-                      (decimal))))
+                      (integer)
+                      (integer)
+                      (integer))))
                 (list_comprehension
                   (for_clause
                     (assignments
                       (assignment
                         (identifier)
                         (list
-                          (decimal)
-                          (decimal)
-                          (decimal))))
+                          (integer)
+                          (integer)
+                          (integer))))
                     (binary_expression
                       (binary_expression
                         (identifier)
@@ -344,15 +356,15 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
             (parenthesized_expression
               (binary_expression
                 (identifier)
-                (decimal)))
+                (integer)))
             (list_comprehension
               (for_clause
                 (assignments
                   (assignment
                     (identifier)
                     (range
-                      (decimal)
-                      (decimal))))
+                      (integer)
+                      (integer))))
                 (list_comprehension
                   (if_clause
                     (parenthesized_expression
@@ -371,14 +383,14 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (each
               (let_prefix
                 (assignments
                   (assignment
                     (identifier)
-                    (decimal))))
+                    (integer))))
               (function_call
                 (identifier)
                 (arguments
@@ -396,8 +408,8 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
                 (assignment
                   (identifier)
                   (range
-                    (decimal)
-                    (decimal)))))
+                    (integer)
+                    (integer)))))
             (assignments
               (assignment
                 (identifier)
@@ -407,7 +419,7 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
                 (assignments
                   (assignment
                     (identifier)
-                    (decimal))))
+                    (integer))))
               (function_call
                 (identifier)
                 (arguments
@@ -424,15 +436,15 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
               (assignment
                 (identifier)
                 (range
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer))))
             (list_comprehension
               (if_clause
                 (let_prefix
                   (assignments
                     (assignment
                       (identifier)
-                      (decimal))))
+                      (integer))))
                 (parenthesized_expression
                   (function_call
                     (identifier)
@@ -454,7 +466,7 @@ negative_int = -6;
   (var_declaration
     (assignment
       (identifier)
-      (decimal)))
+      (integer)))
   (var_declaration
     (assignment
       (identifier)
@@ -470,7 +482,7 @@ negative_int = -6;
   (var_declaration
     (assignment
       (identifier)
-      (decimal))))
+      (integer))))
 
 ================================================================================
 Each Expansion
@@ -487,24 +499,24 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
     (assignment
       (identifier)
       (list
-        (decimal)
-        (decimal)
-        (decimal))))
+        (integer)
+        (integer)
+        (integer))))
   (var_declaration
     (assignment
       (identifier)
       (list
-        (decimal)
-        (decimal)
+        (integer)
+        (integer)
         (each
           (identifier))
         (each
           (parenthesized_expression
             (list
-              (decimal)
-              (decimal))))
+              (integer)
+              (integer))))
         (each
-          (decimal))
+          (integer))
         (each
           (list_comprehension
             (for_clause
@@ -512,8 +524,8 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
                 (assignment
                   (identifier)
                   (range
-                    (decimal)
-                    (decimal))))
+                    (integer)
+                    (integer))))
               (identifier)))))))
   (var_declaration
     (assignment
@@ -523,8 +535,8 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
           (boolean))
         (each
           (range
-            (decimal)
-            (decimal)))
+            (integer)
+            (integer)))
         (each
           (undef))
         (each
@@ -536,7 +548,7 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
         (each
           (function_lit
             (parameters)
-            (decimal))))))
+            (integer))))))
   (var_declaration
     (assignment
       (identifier)
@@ -550,9 +562,9 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
                     (identifier)
                     (arguments
                       (identifier)))
-                  (decimal)))
-              (decimal)
-              (decimal))))
+                  (integer)))
+              (integer)
+              (integer))))
         (each
           (list_comprehension
             (if_clause
@@ -562,5 +574,5 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
                     (identifier)
                     (arguments
                       (identifier)))
-                  (decimal)))
+                  (integer)))
               (boolean))))))))

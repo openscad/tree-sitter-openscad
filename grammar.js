@@ -53,18 +53,6 @@ function commaSep(rule, trailing_separator = false) {
  */
 
 /**
- * Creates a rule that accepts another rule with optional grouping symbols.
- *
- * @param {GroupingCallback} grouping
- * @param {Rule} rule
- *
- * @returns {ChoiceRule}
- */
-function opt_grouping(grouping, rule) {
-  return choice(grouping(rule), rule);
-}
-
-/**
  * Creates a rule to match a rule surrounded by parentheses.
  *
  * @param {Rule} rule
@@ -268,6 +256,7 @@ module.exports = grammar({
 
     assignments: $ => seq('(', sepBy(',', $.assignment), ')'),
     parenthesized_expression: $ => parens($.expression),
+    // `x = 0; x < 5; x = x + 2`
     condition_update_clause: $ => parens(seq(
       field('initializer', commaSep($.assignment)), ';',
       field('condition', $.expression), ';',
@@ -281,7 +270,7 @@ module.exports = grammar({
       $.string,
       $.number,
       $.boolean,
-      $.undef,
+      $.undef, // TODO  undef is not really a literal
       $.function_lit,
       $.range,
       $.list,
@@ -305,13 +294,13 @@ module.exports = grammar({
     _list_cell: $ => choice($.expression, $.each, $.list_comprehension),
     _comprehension_cell: $ => choice(
       $.expression,
-      opt_grouping(parens, $.each),
-      opt_grouping(parens, $.list_comprehension),
+      choice(parens($.each), $.each),
+      choice(parens($.list_comprehension), $.list_comprehension),
     ),
     each: $ => seq(
       optional($.let_prefix),
       'each',
-      choice($.expression, $.list_comprehension)
+      choice($.expression, $.list_comprehension),
     ),
 
     list_comprehension: $ => seq(
@@ -320,7 +309,7 @@ module.exports = grammar({
     // TODO dry up let variants
     let_prefix: $ => seq(
       'let',
-      $.assignments
+      $.assignments,
     ),
     for_clause: $ => seq(
       optional($.let_prefix),
@@ -404,14 +393,14 @@ module.exports = grammar({
     assert_statement: $ => seq(
       'assert',
       field('arguments', $.arguments),
-      field('statement', $.statement)
+      field('statement', $.statement),
     ),
     // assert tail expressions can be optional:
     // check = assert(true);
     assert_expression: $ => prec.right(seq(
       'assert',
       field('arguments', $.arguments),
-      optional(field('expression', $.expression))
+      optional(field('expression', $.expression)),
     )),
 
     // valid names for variables, functions, and modules
@@ -441,9 +430,18 @@ module.exports = grammar({
       '"',
     ),
 
-    number: $ => choice($.decimal, $.float),
-    decimal: _ => token(/-?\d+/),
-    float: _ => token(/-?(\d+(\.\d+)?|\.\d+)(e-?\d+)?/),
+    number: $ => choice($.integer, $.float),
+    integer: _ =>
+      token(
+        seq(optional(token.immediate('-')),
+          /\d+/,
+        )),
+    float: _ => token(
+      seq(
+        optional(token.immediate('-')),
+        /(\d+(\.\d+)?|\.\d+)/,
+        optional(/[eE]-?\d+?/),
+      )),
     boolean: _ => choice('true', 'false'),
     undef: _ => 'undef',
 

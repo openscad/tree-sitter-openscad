@@ -92,11 +92,11 @@
     "named": true,
     "subtypes": [
       {
-        "type": "decimal",
+        "type": "float",
         "named": true
       },
       {
-        "type": "float",
+        "type": "integer",
         "named": true
       }
     ]
@@ -1335,10 +1335,6 @@
     "named": true
   },
   {
-    "type": "decimal",
-    "named": true
-  },
-  {
     "type": "each",
     "named": false
   },
@@ -1380,6 +1376,10 @@
   },
   {
     "type": "include_path",
+    "named": true
+  },
+  {
+    "type": "integer",
     "named": true
   },
   {

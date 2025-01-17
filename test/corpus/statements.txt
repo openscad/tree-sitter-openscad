@@ -26,18 +26,18 @@ translate([1, 0, 0]) {
       (arguments
         (assignment
           (identifier)
-          (decimal))
+          (integer))
         (assignment
           (identifier)
-          (decimal)))))
+          (integer)))))
   (transform_chain
     (module_call
       (identifier)
       (arguments
         (list
-          (decimal)
-          (decimal)
-          (decimal))))
+          (integer)
+          (integer)
+          (integer))))
     (transform_chain
       (module_call
         (identifier)
@@ -47,9 +47,9 @@ translate([1, 0, 0]) {
       (identifier)
       (arguments
         (list
-          (decimal)
-          (decimal)
-          (decimal))))
+          (integer)
+          (integer)
+          (integer))))
     (union_block
       (transform_chain
         (module_call
@@ -61,9 +61,9 @@ translate([1, 0, 0]) {
               (identifier)
               (arguments
                 (list
-                  (decimal)
-                  (decimal)
-                  (decimal))))
+                  (integer)
+                  (integer)
+                  (integer))))
             (transform_chain
               (module_call
                 (identifier)
@@ -112,9 +112,9 @@ intersection_for (i = [1, 2, 3]) {
           (identifier)
           (arguments
             (list
-              (decimal)
-              (decimal)
-              (decimal))))
+              (integer)
+              (integer)
+              (integer))))
         (transform_chain
           (module_call
             (identifier)
@@ -124,9 +124,9 @@ intersection_for (i = [1, 2, 3]) {
       (assignment
         (identifier)
         (range
-          (decimal)
-          (decimal)
-          (decimal))))
+          (integer)
+          (integer)
+          (integer))))
     (union_block
       (let_block
         (assignments
@@ -134,12 +134,12 @@ intersection_for (i = [1, 2, 3]) {
             (identifier)
             (binary_expression
               (identifier)
-              (decimal)))
+              (integer)))
           (assignment
             (identifier)
             (binary_expression
               (identifier)
-              (decimal))))
+              (integer))))
         (union_block
           (transform_chain
             (module_call
@@ -148,7 +148,7 @@ intersection_for (i = [1, 2, 3]) {
                 (list
                   (identifier)
                   (identifier)
-                  (decimal))))
+                  (integer))))
             (transform_chain
               (module_call
                 (identifier)
@@ -161,24 +161,24 @@ intersection_for (i = [1, 2, 3]) {
       (assignment
         (identifier)
         (list
-          (decimal)
-          (decimal)
-          (decimal))))
+          (integer)
+          (integer)
+          (integer))))
     (union_block
       (if_block
         (parenthesized_expression
           (binary_expression
             (identifier)
-            (decimal)))
+            (integer)))
         (union_block
           (transform_chain
             (module_call
               (identifier)
               (arguments
                 (list
-                  (decimal)
+                  (integer)
                   (identifier)
-                  (decimal))))
+                  (integer))))
             (transform_chain
               (module_call
                 (identifier)
@@ -204,7 +204,7 @@ rotate([0, 90, 0]) !# cylinder();
     (module_call
       (identifier)
       (arguments
-        (decimal)))
+        (integer)))
     (transform_chain
       (module_call
         (identifier)
@@ -215,9 +215,9 @@ rotate([0, 90, 0]) !# cylinder();
       (identifier)
       (arguments
         (list
-          (decimal)
-          (decimal)
-          (decimal))))
+          (integer)
+          (integer)
+          (integer))))
     (transform_chain
       (modifier)
       (modifier)
@@ -247,7 +247,7 @@ for (y = [3:5])
   (var_declaration
     (assignment
       (identifier)
-      (decimal)))
+      (integer)))
   (assert_statement
     (arguments))
   (assert_statement
@@ -257,7 +257,7 @@ for (y = [3:5])
     (arguments
       (binary_expression
         (identifier)
-        (decimal)))
+        (integer)))
     (transform_chain
       (module_call
         (identifier)
@@ -275,14 +275,14 @@ for (y = [3:5])
           (identifier)
           (arguments
             (string)
-            (decimal))))))
+            (integer))))))
   (for_block
     (assignments
       (assignment
         (identifier)
         (range
-          (decimal)
-          (decimal))))
+          (integer)
+          (integer))))
     (assert_statement
       (arguments
         (assert_expression
