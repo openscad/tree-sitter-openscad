@@ -116,8 +116,7 @@ echo(true && 4 == 4);
     (parameters
       (parameter
         (identifier)))
-    (function_call
-      (identifier)
+    (echo_expression
       (arguments
         (function_call
           (identifier)
@@ -319,7 +318,7 @@ indexer = function(v) v[0];
 ================================================================================
 Functions and Ternaries
 ================================================================================
-fn = function(x) x;
+fn = function(x) echo("this is x") x;
 echo(fn ? "truthy" : "falsey");
 echo(function(y) y ? "first" : "second");
 --------------------------------------------------------------------------------
@@ -332,7 +331,10 @@ echo(function(y) y ? "first" : "second");
         (parameters
           (parameter
             (identifier)))
-        (identifier))))
+        (echo_expression
+          (arguments
+            (string))
+          (identifier)))))
   (transform_chain
     (module_call
       (identifier)

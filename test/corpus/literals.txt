@@ -42,6 +42,7 @@ All Literals
 ================================================================================
 num = -4.3;
 ex_num = -4.3E-09;
+ex_num2 = 2.254871220604705e+00;
 name = "Karl";
 esc = "\\";
 neg_ident = [-num];
@@ -55,6 +56,10 @@ check = assert();
 --------------------------------------------------------------------------------
 
 (source_file
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
   (var_declaration
     (assignment
       (identifier)

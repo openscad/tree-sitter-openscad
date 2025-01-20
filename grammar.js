@@ -133,6 +133,7 @@ module.exports = grammar({
       $.index_expression,
       $.dot_index_expression,
       $.assert_expression,
+      $.echo_expression,
       $.literal,
       $._variable_name,
     ),
@@ -374,22 +375,6 @@ module.exports = grammar({
     // same applies to expressions. So, this creates two parsers for the two
     // distinct conditions, but uses a shared parser for the text of the assert
     // clause itself.
-    _assert_clause: $ => seq(
-      'assert', '(',
-      optional($._assert_condition),
-      optional($._assert_message),
-      ')',
-    ),
-    _assert_condition: $ => seq(
-      optional(seq('condition', '=')),
-      field('condition', $.expression),
-    ),
-    _assert_message: $ => seq(
-      ',',
-      optional(seq('message', '=')),
-      field('message', $.expression),
-      optional(seq(',', field('trailing_args', commaSep1($.expression)))),
-    ),
     assert_statement: $ => seq(
       'assert',
       field('arguments', $.arguments),
@@ -399,6 +384,13 @@ module.exports = grammar({
     // check = assert(true);
     assert_expression: $ => prec.right(seq(
       'assert',
+      field('arguments', $.arguments),
+      optional(field('expression', $.expression)),
+    )),
+
+    // echo_expression behaves the same way as assert_expression
+    echo_expression: $ => prec.right(seq(
+      'echo',
       field('arguments', $.arguments),
       optional(field('expression', $.expression)),
     )),
@@ -440,7 +432,7 @@ module.exports = grammar({
       seq(
         optional(token.immediate('-')),
         /(\d+(\.\d+)?|\.\d+)/,
-        optional(/[eE]-?\d+?/),
+        optional(/[eE][+-]?\d+?/),
       )),
     boolean: _ => choice('true', 'false'),
     undef: _ => 'undef',

@@ -35,6 +35,11 @@
   arguments: (arguments (assignment name: _ @variable.parameter))
 )
 
+(echo_expression
+  arguments: (arguments (assignment name: _ @variable.parameter))
+)
+(echo_expression "echo" @function.builtin)
+
 ; Variables
 (parameter
   [_ @variable.parameter (assignment name: _ @variable.parameter)]
@@ -107,6 +112,7 @@
     "text"
     "translate"
     "union"
+    "echo"
   )
 )
 (
