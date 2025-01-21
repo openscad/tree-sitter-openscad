@@ -7,12 +7,12 @@
  *
  * @param {Rule} rule
  * @param {string} separator - The separator to use.
- * @param {boolean?} trailing_separator - The trailing separator to use.
+ * @param {boolean?} trailing - The trailing separator to use.
  *
  * @returns {SeqRule}
  */
-const listSeq = (rule, separator, trailing_separator = false) =>
-  trailing_separator ?
+const listSeq = (rule, separator, trailing = false) =>
+  trailing ?
     seq(rule, repeat(seq(separator, rule)), optional(separator)) :
     seq(rule, repeat(seq(separator, rule)));
 
@@ -21,13 +21,13 @@ const listSeq = (rule, separator, trailing_separator = false) =>
  * and optionally adds a trailing separator (default is false).
  *
  * @param {Rule} rule
- * @param {boolean?} trailing_separator - The trailing separator to use.
+ * @param {boolean?} trailing - The trailing separator to use.
  *
  * @returns {SeqRule}
  */
-function commaSep1(rule, trailing_separator = false) {
+function commaSep1(rule, trailing = false) {
   // return seq(rule, repeat(seq(',', rule)))
-  return listSeq(rule, ',', trailing_separator);
+  return listSeq(rule, ',', trailing);
 }
 
 /**
@@ -35,12 +35,12 @@ function commaSep1(rule, trailing_separator = false) {
  * by a comma and optionally adds a trailing separator (default is false).
  *
  * @param {Rule} rule
- * @param {boolean?} trailing_separator - The trailing separator to use.
+ * @param {boolean?} trailing - The trailing separator to use.
  *
  * @returns {ChoiceRule}
  */
-function commaSep(rule, trailing_separator = false) {
-  return optional(commaSep1(rule, trailing_separator));
+function commaSep(rule, trailing = false) {
+  return optional(commaSep1(rule, trailing));
 }
 
 /**
@@ -253,9 +253,9 @@ module.exports = grammar({
       field('name', $.identifier),
       field('arguments', $.arguments),
     ),
-    arguments: $ => parens(commaSep(choice($.expression, $.assignment), true)),
+    arguments: $ => parens(commaSep(choice($.expression, $.assignment), trailing = true)),
 
-    assignments: $ => seq('(', sepBy(',', $.assignment), ')'),
+    assignments: $ => parens(commaSep($.assignment, trailing = true)),
     parenthesized_expression: $ => parens($.expression),
     // `x = 0; x < 5; x = x + 2`
     condition_update_clause: $ => parens(seq(
@@ -291,7 +291,7 @@ module.exports = grammar({
       ']',
     ),
 
-    list: $ => brackets(seq(commaSep($._list_cell, true))),
+    list: $ => brackets(seq(commaSep($._list_cell, trailing = true))),
     _list_cell: $ => choice($.expression, $.each, $.list_comprehension),
     _comprehension_cell: $ => choice(
       $.expression,
