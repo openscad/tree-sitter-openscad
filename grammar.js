@@ -200,8 +200,13 @@ module.exports = grammar({
     // These are called statements, but use statements aren't included in
     // $.statement because they can't be used in all the same places as other
     // statements
-    include_statement: $ => seq('include', $.include_path),
-    use_statement: $ => seq('use', $.include_path),
+    include_statement: $ =>
+      prec.right(
+        seq('include', $.include_path, optional(';')),
+      ),
+    use_statement: $ => prec.right(
+      seq('use', $.include_path, optional(';')),
+    ),
     include_path: _ => /<[^>]*>/,
     assignment: $ => seq(
       field('name', $._variable_name),

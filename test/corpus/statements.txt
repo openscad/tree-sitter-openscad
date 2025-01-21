@@ -3,15 +3,15 @@ Transformations
 ================================================================================
 cylinder();
 cylinder(
-    d=5,
-    h=100,
+  d=5,
+  h=100,
 );
 rotate([90, 0, 0]) cylinder();
 translate([1, 0, 0]) {
-    difference() {
-        rotate([0, 90, 0]) cylinder();
-        cube();
-    }
+  difference() {
+    rotate([0, 90, 0]) cylinder();
+    cube();
+  }
 }
 --------------------------------------------------------------------------------
 
@@ -77,21 +77,21 @@ translate([1, 0, 0]) {
 Control Flow
 ================================================================================
 if ($preview)
-    if (false)
-        sphere();
-    else
-        translate([2, 0, 0]) cube();
+  if (false)
+    sphere();
+  else
+    translate([2, 0, 0]) cube();
 
 for (i = [1:2:7]) {
-    let (x = i ^ 2, y = x - 1) {
-        translate([x, y, 0]) sphere(r = i);
-    }
+  let (x = i ^ 2, y = x - 1) {
+    translate([x, y, 0]) sphere(r=i);
+  }
 }
 
 intersection_for (i = [1, 2, 3]) {
-    if (i > 1) {
-        translate([0, i, 0]) cube();
-    }
+  if (i > 1) {
+    translate([0, i, 0]) cube();
+  }
 }
 --------------------------------------------------------------------------------
 
@@ -187,10 +187,11 @@ intersection_for (i = [1, 2, 3]) {
 ================================================================================
 Modifiers
 ================================================================================
-! cylinder();
-* linear_extrude(4) text("Hello");
-rotate([0, 90, 0]) !# cylinder();
-% cube();
+!cylinder();
+*linear_extrude(4) text("Hello");
+rotate([0, 90, 0])
+  !#cylinder();
+%cube();
 --------------------------------------------------------------------------------
 
 (source_file

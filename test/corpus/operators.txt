@@ -361,7 +361,7 @@ Assert Expressions
 ================================================================================
 x = assert(true, false, "extra1", "extra2") 5;
 undef_assert = assert();
-parameter_assert = assert(condition = x != 5, message = str("evaluated: ", x));
+parameter_assert = assert(condition=x != 5, message=str("evaluated: ", x));
 fn = function(x) assert(x) x;
 echo(assert(true) assert(false) true);
 --------------------------------------------------------------------------------
