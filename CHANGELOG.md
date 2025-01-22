@@ -11,7 +11,7 @@
   `x = echo("foo") true;`
 - added `let_prefix` node to support let expressions in list comprehension contexts
 - removed `modifier_chain` node
-- `paramters_declaration` -> `parameters`
+- `parameters_declaration` -> `parameters`
 - `module_declaration` -> `module_item`
 
 ### Queries
