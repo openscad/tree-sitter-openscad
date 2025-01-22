@@ -8,7 +8,7 @@
 
   outputs = { self, nixpkgs, ... }@inputs:
     let
-      version = "0.2.0";
+      version = "0.6.0";
 
       # Matches pkgs.tree-sitter
       supportedSystems = [
@@ -41,7 +41,7 @@
       packages = forAllSystems ({ system, pkgs, ... }: {
         tree-sitter-openscad = pkgs.callPackage (nixpkgs + "/pkgs/development/tools/parsing/tree-sitter/grammar.nix") { }
           {
-            language = "nickel";
+            language = "openscad";
             src = ./.;
             inherit version;
           };

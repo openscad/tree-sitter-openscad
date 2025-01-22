@@ -11,13 +11,17 @@
     }
   ],
   "metadata": {
-    "version": "0.5.1",
+    "version": "0.6.0",
     "license": "MIT",
     "description": "OpenSCAD grammar for tree-sitter",
     "authors": [
       {
         "name": "Ian Boll",
         "email": "mainbollian@gmail.com"
+      },
+      {
+        "name": "Mikhail Katychev",
+        "email": "mkatych@gmail.com"
       }
     ],
     "links": {

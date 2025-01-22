@@ -3,6 +3,7 @@
 /build
 /node_modules
 /target
+/result
 
 # Windows build artifacts
 parser.exp
