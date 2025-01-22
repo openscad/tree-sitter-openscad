@@ -1,4 +1,5 @@
 *.so
+*.dylib
 /build
 /node_modules
 /target

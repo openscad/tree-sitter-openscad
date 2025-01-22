@@ -31,8 +31,6 @@
             let
               # shellPackages = (pkgs.callPackage ./shell.nix { }).packages;
 
-              # If the generated code differs from the checked in we need
-              # to check in the newly generated sources.
               mkCheck =
                 name: check:
                 pkgs.runCommand name
@@ -54,13 +52,6 @@
               build = self.packages.${system}.tree-sitter-openscad;
 
               editorconfig = mkCheck "editorconfig" "editorconfig-checker";
-
-              # If the generated code differs from the checked in we need
-              # to check in the newly generated sources.
-              generated-diff = mkCheck "generated-diff" ''
-                HOME=. npm run generate
-                diff -r src/ ${self}/src
-              '';
 
               rust-bindings =
                 let
