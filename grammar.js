@@ -258,9 +258,9 @@ module.exports = grammar({
       field('name', $.identifier),
       field('arguments', $.arguments),
     ),
-    arguments: $ => parens(commaSep(choice($.expression, $.assignment), trailing = true)),
+    arguments: $ => parens(commaSep(choice($.expression, $.assignment), true)),
 
-    assignments: $ => parens(commaSep($.assignment, trailing = true)),
+    assignments: $ => parens(commaSep($.assignment, true)),
     parenthesized_expression: $ => parens($.expression),
     // `x = 0; x < 5; x = x + 2`
     condition_update_clause: $ => parens(seq(
@@ -296,7 +296,7 @@ module.exports = grammar({
       ']',
     ),
 
-    list: $ => brackets(seq(commaSep($._list_cell, trailing = true))),
+    list: $ => brackets(seq(commaSep($._list_cell, true))),
     _list_cell: $ => choice($.expression, $.each, $.list_comprehension),
     _comprehension_cell: $ => choice(
       $.expression,
