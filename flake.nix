@@ -1,108 +1,87 @@
-# based off of tree-sitter-nix flake setup
+# based off of github.com/nickel-lang/tree-sitter-nickel/blob/aeac4/flake.nix
 {
-  description = "tree-sitter-openscad";
+  description = "A tree-sitter grammar for OpenSCAD";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    flake-utils.url = "github:numtide/flake-utils";
-
-    nix-github-actions.url = "github:nix-community/nix-github-actions";
-    nix-github-actions.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs =
+  outputs = { self, nixpkgs, ... }@inputs:
+    let
+      version = "0.2.0";
+
+      # Matches pkgs.tree-sitter
+      supportedSystems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ];
+
+      pkgsFor = nixpkgs.lib.genAttrs supportedSystems (system: import nixpkgs {
+        inherit system;
+      });
+
+      forAllSystems = fn: nixpkgs.lib.genAttrs supportedSystems (system: fn rec {
+        inherit system;
+        pkgs = pkgsFor.${system};
+        inherit (pkgs) lib;
+      });
+    in
     {
-      self,
-      nixpkgs,
-      flake-utils,
-      nix-github-actions,
-    }:
-    (
-      (flake-utils.lib.eachDefaultSystem (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          inherit (pkgs) lib;
+      overlays = {
+        tree-sitter-grammars = final: prev: {
+          tree-sitter-grammars = prev.tree-sitter-grammars // {
+            tree-sitter-openscad = self.packages.${prev.system}.tree-sitter-openscad;
+          };
+        };
+      };
 
-        in
-        {
-          checks =
-            let
-              # shellPackages = (pkgs.callPackage ./shell.nix { }).packages;
+      packages = forAllSystems ({ system, pkgs, ... }: {
+        tree-sitter-openscad = pkgs.callPackage (nixpkgs + "/pkgs/development/tools/parsing/tree-sitter/grammar.nix") { }
+          {
+            language = "nickel";
+            src = ./.;
+            inherit version;
+          };
 
-              mkCheck =
-                name: check:
-                pkgs.runCommand name
-                  {
-                    inherit (self.devShells.${system}.default) nativeBuildInputs;
-                  }
-                  ''
-                    cp -rv ${self} src
-                    chmod +w -R src
-                    cd src
+        default = self.packages.${system}.tree-sitter-openscad;
+      });
 
-                    ${check}
+      devShells = forAllSystems ({ system, pkgs, ... }: {
+        default = pkgs.mkShell {
+          inputsFrom = builtins.concatMap builtins.attrValues [
+            self.checks.${system}
+            self.packages.${system}
+          ];
+          env = {
+            npm_config_build_from_source = true;
+          };
+        };
+      });
 
-                    touch $out
-                  '';
+      checks = forAllSystems ({ pkgs, ... }: {
+        default = pkgs.stdenv.mkDerivation {
+          pname = "tree-sitter-openscad-test";
+          inherit version;
 
-            in
-            {
-              build = self.packages.${system}.tree-sitter-openscad;
+          src = self;
 
-              editorconfig = mkCheck "editorconfig" "editorconfig-checker";
+          nativeBuildInputs = [
+            pkgs.nodejs_latest
+            pkgs.tree-sitter
+            pkgs.clang
+          ];
 
-              rust-bindings =
-                let
-                  cargo' = lib.importTOML ./Cargo.toml;
-                in
-                pkgs.rustPlatform.buildRustPackage {
-                  pname = cargo'.package.name;
-                  inherit (cargo'.package) version;
-                  src = self;
-                  cargoLock = {
-                    lockFile = ./Cargo.lock;
-                  };
-                };
+          buildPhase = ''
+            echo 'Running corpus tests'
+            HOME=$(mktemp -d) tree-sitter test
+          '';
 
-            }
-            // lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
-              # Requires xcode
-              node-bindings =
-                let
-                  package' = lib.importJSON ./package.json;
-                in
-                pkgs.stdenv.mkDerivation {
-                  pname = package'.name;
-                  inherit (package') version;
-                  src = self;
-                  nativeBuildInputs = with pkgs; [
-                    importNpmLock.hooks.npmConfigHook
-                    nodejs
-                    nodejs.passthru.python # for node-gyp
-                    npmHooks.npmBuildHook
-                    npmHooks.npmInstallHook
-                    tree-sitter
-                  ];
-                  npmDeps = pkgs.importNpmLock {
-                    npmRoot = ./.;
-                  };
-                  buildPhase = ''
-                    runHook preBuild
-                    ${pkgs.nodePackages.node-gyp}/bin/node-gyp configure
-                    npm run build
-                    runHook postBuild
-                  '';
-                  installPhase = "touch $out";
-                };
-            };
-
-          packages.tree-sitter-openscad = pkgs.callPackage ./default.nix { src = self; };
-          packages.default = self.packages.${system}.tree-sitter-openscad;
-          devShells.default = pkgs.callPackage ./shell.nix { };
-
-        }
-      ))
-    );
+          # Write nothing to the store
+          installPhase = "touch $out";
+        };
+      });
+    };
 }
