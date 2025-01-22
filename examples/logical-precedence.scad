@@ -1,7 +1,7 @@
 function side_effect(x) =
-    echo(str("side effect ", x));
+  echo(str("side effect ", x));
 function truthy_effect(x) =
-    side_effect(x) == undef;
+  side_effect(x) == undef;
 
 bool = true;
 int1 = 4;
