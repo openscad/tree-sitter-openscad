@@ -2256,5 +2256,6 @@
     "expression",
     "number",
     "statement"
-  ]
+  ],
+  "reserved": {}
 }
