@@ -1,4 +1,7 @@
 # tree-sitter-openscad
+[npm]: https://img.shields.io/npm/v/tree-sitter-openscad?logo=npm
+[crates]: https://img.shields.io/crates/v/tree-sitter-openscad?logo=rust
+[pypi]: https://img.shields.io/pypi/v/tree-sitter-openscad?logo=pypi&logoColor=ffd242
 
 OpenSCAD grammar for the tree-sitter parsing library
 
