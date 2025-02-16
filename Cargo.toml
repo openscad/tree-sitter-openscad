@@ -6,7 +6,7 @@ keywords = ["incremental", "parsing", "openscad"]
 categories = ["parsing", "text-editors"]
 authors = ["Ian Boll <mainbollian@gmail.com>", "Mikhail Katychev <mkatych@gmail.com>"]
 repository = "https://github.com/bollian/tree-sitter-openscad"
-edition = "2018"
+edition = "2021"
 license = "MIT"
 
 build = "bindings/rust/build.rs"
@@ -21,7 +21,7 @@ include = [
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "0.20"
+tree-sitter = "0.25"
 
 [build-dependencies]
 cc = "1.0"
