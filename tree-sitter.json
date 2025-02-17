@@ -8,10 +8,7 @@
       "file-types": [
         "scad"
       ],
-      "highlights": [
-        "queries/highlights.scm"
-      ],
-      "injection-regex": "^toml$"
+      "injection-regex": "^(open)?scad$"
     }
   ],
     "metadata": {

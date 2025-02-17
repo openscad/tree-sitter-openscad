@@ -21,3 +21,7 @@ lint:
 
 fmt:
   eslint --fix grammar.js
+
+# show visual syntax graph
+show-graph:
+  tree-sitter test --debug-graph --open-log

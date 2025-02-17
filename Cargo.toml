@@ -18,7 +18,7 @@ include = [
 ]
 
 [lib]
-name = "tree-sitter-openscad"
+name = "tree_sitter_openscad"
 path = "bindings/rust/lib.rs"
 
 [dependencies]
