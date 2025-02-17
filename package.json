@@ -1,7 +1,16 @@
 {
-  "name": "tree-sitter-openscad",
+  "name": "@openscad/tree-sitter-openscad",
   "version": "0.6.0",
   "description": "OpenSCAD grammar for tree-sitter",
+  "repository": "https://github.com/openscad/tree-sitter-openscad",
+  "license": "MIT",
+  "author": "Ian Boll <mainbollian@gmail.com>",
+  "maintainers": [
+    {
+      "name": "Mikhail Katychev",
+      "email": "mkatych@gmail.com"
+    }
+  ],
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [
@@ -17,14 +26,8 @@
     "queries/*",
     "src/**"
   ],
-  "author": "Ian Boll <mainbollian@gmail.com>",
-  "contributors": [
-    "amaanq (Amaan Qureshi) <amaanq12@gmail.com>",
-    "mkatychev (Mikhail Katychev) <mkatych@gmail.com>"
-  ],
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bollian/tree-sitter-openscad/issues"
+    "url": "https://github.com/openscad/tree-sitter-openscad/issues"
   },
   "dependencies": {
     "node-addon-api": "^8.3.0",
@@ -39,13 +42,12 @@
     }
   },
   "devDependencies": {
-    "eslint": "^9.15.0",
-    "eslint-config-treesitter": "^1.0.2",
-    "prebuildify": "^6.0.0",
+    "eslint": "^9.16.0",
+    "eslint-config-treesitter": "^1.0",
+    "prebuildify": "^6.0",
     "tree-sitter": "^0.22.4",
     "tree-sitter-cli": "^0.25"
   },
-  "repository": "https://github.com/bollian/tree-sitter-openscad",
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
     "test": "tree-sitter test && node --test",

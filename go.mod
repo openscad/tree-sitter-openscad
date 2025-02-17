@@ -1,4 +1,4 @@
-module github.com/bollian/tree-sitter-openscad
+module github.com/openscad/tree-sitter-openscad
 
 go 1.22
 

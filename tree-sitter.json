@@ -7,10 +7,14 @@
       "path": ".",
       "file-types": [
         "scad"
-      ]
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^toml$"
     }
   ],
-  "metadata": {
+    "metadata": {
     "version": "0.6.0",
     "license": "MIT",
     "description": "OpenSCAD grammar for tree-sitter",
@@ -25,7 +29,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/bollian/tree-sitter-openscad"
+      "repository": "https://github.com/openscad/tree-sitter-openscad"
     }
   },
   "bindings": {
