@@ -31,13 +31,13 @@
   },
   "dependencies": {
     "node-addon-api": "^8.3.0",
-    "node-gyp-build": "^4.8.0"
+    "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
     "tree-sitter": "^0.22"
   },
   "peerDependenciesMeta": {
-    "tree_sitter": {
+    "tree-sitter": {
       "optional": true
     }
   },
@@ -45,7 +45,6 @@
     "eslint": "^9.16.0",
     "eslint-config-treesitter": "^1.0",
     "prebuildify": "^6.0",
-    "tree-sitter": "^0.22.4",
     "tree-sitter-cli": "^0.25"
   },
   "scripts": {
@@ -55,5 +54,8 @@
     "test-windows": "tree-sitter test",
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
