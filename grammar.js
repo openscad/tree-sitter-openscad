@@ -102,7 +102,7 @@ function binary_operator(operator, rule) {
 }
 
 
-    const EXPONENT =  /[eE][+-]?\d+/;
+const EXPONENT = /[eE][+-]?\d+/;
 module.exports = grammar({
   name: 'openscad',
 
@@ -430,11 +430,11 @@ module.exports = grammar({
     ),
 
     number: $ => choice($.integer, $.float),
-    integer:_=>
+    integer: _=>
       token(
         seq(optional(token.immediate('-')),
           /\d+/,
-        optional(token.immediate(EXPONENT)),
+          optional(token.immediate(EXPONENT)),
         )),
     float: _=> token(
       seq(
