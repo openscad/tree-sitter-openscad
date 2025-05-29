@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-openscad
-        VERSION "0.6.0"
+        VERSION "0.6.1"
         DESCRIPTION "OpenSCAD grammar for tree-sitter"
         HOMEPAGE_URL "https://github.com/openscad/tree-sitter-openscad"
         LANGUAGES C)

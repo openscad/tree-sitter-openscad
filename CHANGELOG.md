@@ -1,3 +1,7 @@
+## Version 0.6.1
+
+- [#4](https://github.com/openscad/tree-sitter-openscad/pull/4) handled floats with a trailing period
+
 ## Version 0.6.0
 
 ### Grammar Changes

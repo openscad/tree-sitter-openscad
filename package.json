@@ -1,6 +1,6 @@
 {
   "name": "@openscad/tree-sitter-openscad",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "OpenSCAD grammar for tree-sitter",
   "repository": "https://github.com/openscad/tree-sitter-openscad",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.22"
+    "tree-sitter": "^0.22.4"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {
