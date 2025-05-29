@@ -2165,14 +2165,14 @@
           },
           {
             "type": "PATTERN",
-            "value": "(\\d+(\\.\\d+)?|\\.\\d+)"
+            "value": "(\\d+\\.\\d*|\\.\\d+)"
           },
           {
             "type": "CHOICE",
             "members": [
               {
                 "type": "PATTERN",
-                "value": "[eE][+-]?\\d+?"
+                "value": "[eE][+-]?\\d+"
               },
               {
                 "type": "BLANK"

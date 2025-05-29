@@ -436,8 +436,8 @@ module.exports = grammar({
     float: _ => token(
       seq(
         optional(token.immediate('-')),
-        /(\d+(\.\d+)?|\.\d+)/,
-        optional(/[eE][+-]?\d+?/),
+        /(\d+\.\d*|\.\d+)/,
+        optional(/[eE][+-]?\d+/),
       )),
     boolean: _ => choice('true', 'false'),
     undef: _ => 'undef',
