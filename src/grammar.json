@@ -2139,6 +2139,18 @@
           {
             "type": "PATTERN",
             "value": "\\d+"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[eE][+-]?\\d+"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }

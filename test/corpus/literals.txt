@@ -51,7 +51,39 @@ trailing_dec_float = 254.;
 
 --------------------------------------------------------------------------------
 
-(source_file)
+(source_file
+  (var_declaration
+    (assignment
+      (identifier)
+      (integer)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float)))
+  (var_declaration
+    (assignment
+      (identifier)
+      (float))))
 
 ================================================================================
 All Literals
