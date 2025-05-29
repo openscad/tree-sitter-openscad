@@ -40,6 +40,7 @@ esc_types = "The quick brown fox \tjumps \"over\" the lazy dog.\rThe quick brown
 ================================================================================
 Floats
 ================================================================================
+ie = 10e10;
 neg_nil  = -0.0;
 neg_float = -4.3;
 full = -2.3e-4;
@@ -68,18 +69,6 @@ check = assert();
 --------------------------------------------------------------------------------
 
 (source_file
-  (var_declaration
-    (assignment
-      (identifier)
-      (float)))
-  (var_declaration
-    (assignment
-      (identifier)
-      (float)))
-  (var_declaration
-    (assignment
-      (identifier)
-      (float)))
   (var_declaration
     (assignment
       (identifier)
@@ -473,7 +462,7 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
 Integers
 ================================================================================
 i = 5;
-ie = 10e10;
+o = 00005;
 negative_int = -6;
 --------------------------------------------------------------------------------
 
@@ -485,15 +474,7 @@ negative_int = -6;
   (var_declaration
     (assignment
       (identifier)
-      (float)))
-  (var_declaration
-    (assignment
-      (identifier)
-      (float)))
-  (var_declaration
-    (assignment
-      (identifier)
-      (float)))
+      (integer)))
   (var_declaration
     (assignment
       (identifier)
