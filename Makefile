@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-openscad
 HOMEPAGE_URL := https://github.com/openscad/tree-sitter-openscad
-VERSION := 0.6.0
+VERSION := 0.6.1
 
 # repository
 SRC_DIR := src
