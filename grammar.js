@@ -434,13 +434,13 @@ module.exports = grammar({
       token(
         seq(optional(token.immediate('-')),
           /\d+/,
-        optional(EXPONENT),
+        optional(token.immediate(EXPONENT)),
         )),
     float: _=> token(
       seq(
         optional(token.immediate('-')),
         /(\d+\.\d*|\.\d+)/,
-        optional(EXPONENT),
+        optional(token.immediate(EXPONENT)),
       )),
     boolean: _ => choice('true', 'false'),
     undef: _ => 'undef',

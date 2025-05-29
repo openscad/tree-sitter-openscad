@@ -2144,8 +2144,11 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[eE][+-]?\\d+"
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[eE][+-]?\\d+"
+                }
               },
               {
                 "type": "BLANK"
@@ -2183,8 +2186,11 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[eE][+-]?\\d+"
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[eE][+-]?\\d+"
+                }
               },
               {
                 "type": "BLANK"
