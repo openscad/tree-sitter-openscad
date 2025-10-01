@@ -30,7 +30,7 @@
     "url": "https://github.com/openscad/tree-sitter-openscad/issues"
   },
   "dependencies": {
-    "node-addon-api": "^8.3.1",
+    "node-addon-api": "^8.5.0",
     "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
@@ -45,7 +45,7 @@
     "eslint": "^9.28.0",
     "eslint-config-treesitter": "^1.0",
     "prebuildify": "^6.0",
-    "tree-sitter-cli": "^0.25.6"
+    "tree-sitter-cli": "^0.25.10"
   },
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
