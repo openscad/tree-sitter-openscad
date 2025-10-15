@@ -17,7 +17,7 @@
 (function_call
   arguments: (arguments (assignment name: _ @variable.parameter))
 )
-; for the puroposes of distintion since modules are "coloured" impure functions, we will treat them as methods
+; for the puroposes of distinction since modules are "coloured" impure functions, we will treat them as methods
 (module_item (identifier) @function.method)
 (module_item
   parameters: (parameters (parameter (assignment value: (_) @constant)))
