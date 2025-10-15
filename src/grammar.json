@@ -2139,6 +2139,21 @@
           {
             "type": "PATTERN",
             "value": "\\d+"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[eE][+-]?\\d+"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
@@ -2165,14 +2180,17 @@
           },
           {
             "type": "PATTERN",
-            "value": "(\\d+(\\.\\d+)?|\\.\\d+)"
+            "value": "(\\d+\\.\\d*|\\.\\d+)"
           },
           {
             "type": "CHOICE",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[eE][+-]?\\d+?"
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[eE][+-]?\\d+"
+                }
               },
               {
                 "type": "BLANK"

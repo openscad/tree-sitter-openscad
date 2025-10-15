@@ -1,6 +1,6 @@
 {
   "name": "@openscad/tree-sitter-openscad",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "OpenSCAD grammar for tree-sitter",
   "repository": "https://github.com/openscad/tree-sitter-openscad",
   "license": "MIT",
@@ -30,11 +30,11 @@
     "url": "https://github.com/openscad/tree-sitter-openscad/issues"
   },
   "dependencies": {
-    "node-addon-api": "^8.3.0",
+    "node-addon-api": "^8.5.0",
     "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.22"
+    "tree-sitter": "^0.25.0"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {
@@ -42,10 +42,10 @@
     }
   },
   "devDependencies": {
-    "eslint": "^9.16.0",
+    "eslint": "^9.28.0",
     "eslint-config-treesitter": "^1.0",
     "prebuildify": "^6.0",
-    "tree-sitter-cli": "^0.25"
+    "tree-sitter-cli": "^0.25.10"
   },
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",

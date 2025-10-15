@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-openscad-ng"
 description = "openscad grammar for the tree-sitter parsing library"
-version = "0.6.0"
+version = "0.6.1"
 keywords = ["incremental", "parsing", "tree-sitter", "openscad"]
 categories = ["parsing", "text-editors"]
 authors = ["Mikhail Katychev <mkatych@gmail.com>"]
@@ -32,4 +32,4 @@ tree-sitter-language = "0.1"
 tree-sitter = "0.25"
 
 [build-dependencies]
-cc = "1.1"
+cc = "1.2"
