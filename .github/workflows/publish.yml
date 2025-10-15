@@ -29,9 +29,9 @@ jobs:
     with:
       generate: true
       package-name: "tree-sitter-openscad-ng"
-  pypi:
-    uses: tree-sitter/workflows/.github/workflows/package-pypi.yml@main
-    secrets:
-      PYPI_API_TOKEN: ${{secrets.PYPI_TOKEN}}
-    with:
-      generate: true
+  # pypi:
+  #   uses: tree-sitter/workflows/.github/workflows/package-pypi.yml@main
+  #   secrets:
+  #     PYPI_API_TOKEN: ${{secrets.PYPI_TOKEN}}
+  #   with:
+  #     generate: true
