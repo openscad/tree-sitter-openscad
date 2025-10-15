@@ -4,9 +4,7 @@ reset := "\\033[0m"
 
 # regenerate tree-sitter bindings
 regen:
-    rm CMakeLists.txt Makefile Package.swift binding.gyp go.mod pyproject.toml setup.py
-    rm -rf bindings
-    tree-sitter init --update
+    nu --commands "use ts.nu; ts regen"
 
 # compile dylib without CLI dependency
 build-gcc:

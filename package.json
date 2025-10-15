@@ -1,61 +1,52 @@
 {
   "name": "@openscad/tree-sitter-openscad",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "OpenSCAD grammar for tree-sitter",
   "repository": "https://github.com/openscad/tree-sitter-openscad",
   "license": "MIT",
-  "author": "Ian Boll <mainbollian@gmail.com>",
-  "maintainers": [
-    {
-      "name": "Mikhail Katychev",
-      "email": "mkatych@gmail.com"
-    }
-  ],
+  "author": {
+    "name": "Ian Boll",
+    "email": "mainbollian@gmail.com"
+  },
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [
-    "parser",
-    "lexer",
+    "incremental",
+    "parsing",
+    "tree-sitter",
     "openscad"
   ],
   "files": [
     "grammar.js",
+    "tree-sitter.json",
     "binding.gyp",
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
-  "bugs": {
-    "url": "https://github.com/openscad/tree-sitter-openscad/issues"
-  },
   "dependencies": {
     "node-addon-api": "^8.5.0",
     "node-gyp-build": "^4.8.4"
   },
+  "devDependencies": {
+    "prebuildify": "^6.0.1",
+    "tree-sitter": "^0.22.4",
+    "tree-sitter-cli": "^0.25.10"
+  },
   "peerDependencies": {
-    "tree-sitter": "0.25.0"
+    "tree-sitter": "^0.22.4"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {
       "optional": true
     }
   },
-  "devDependencies": {
-    "eslint": "^9.28.0",
-    "eslint-config-treesitter": "^1.0",
-    "prebuildify": "^6.0",
-    "tree-sitter-cli": "^0.25.10"
-  },
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
-    "test": "tree-sitter test && node --test",
-    "parse": "tree-sitter parse",
-    "test-windows": "tree-sitter test",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
-  },
-  "publishConfig": {
-    "access": "public"
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "test": "node --test bindings/node/*_test.js"
   }
 }
