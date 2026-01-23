@@ -103,7 +103,7 @@ function binary_operator(operator, rule) {
 
 
 const EXPONENT = /[eE][+-]?\d+/;
-export default grammar({
+module.exports = grammar({
   name: 'openscad',
 
   extras: $ => [
