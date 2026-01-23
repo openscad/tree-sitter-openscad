@@ -7,7 +7,7 @@
 //! let code = r#"
 //! "#;
 //! let mut parser = tree_sitter::Parser::new();
-//! let language = tree_sitter_openscad::LANGUAGE;
+//! let language = tree_sitter_openscad_ng::LANGUAGE;
 //! parser
 //!     .set_language(&language.into())
 //!     .expect("Error loading Openscad parser");
