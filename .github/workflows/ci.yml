@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - package.json
       - grammar.js
       - src/**
       - test/**
@@ -11,6 +12,7 @@ on:
       - binding.gyp
   pull_request:
     paths:
+      - package.json
       - grammar.js
       - src/**
       - test/**

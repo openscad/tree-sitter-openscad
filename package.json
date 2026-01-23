@@ -2,6 +2,7 @@
   "name": "@openscad/tree-sitter-openscad",
   "version": "0.6.2",
   "description": "OpenSCAD grammar for tree-sitter",
+  "type": "module",
   "repository": "https://github.com/openscad/tree-sitter-openscad",
   "license": "MIT",
   "author": {
