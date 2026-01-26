@@ -12,7 +12,7 @@
     }
   ],
     "metadata": {
-    "version": "0.6.2",
+    "version": "0.7.0",
     "license": "MIT",
     "description": "OpenSCAD grammar for tree-sitter",
     "authors": [

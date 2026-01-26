@@ -1,9 +1,12 @@
 {
   "name": "@openscad/tree-sitter-openscad",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "OpenSCAD grammar for tree-sitter",
   "type": "module",
-  "repository": "https://github.com/openscad/tree-sitter-openscad",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openscad/tree-sitter-openscad.git"
+  },
   "license": "MIT",
   "author": {
     "name": "Ian Boll",
@@ -32,14 +35,12 @@
     "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
-    "eslint": "^9.29.0",
-    "eslint-config-treesitter": "^1.0.2",
     "prebuildify": "^6.0.1",
-    "tree-sitter": "^0.22.4",
-    "tree-sitter-cli": "^0.25.10"
+    "tree-sitter": "^0.25.0",
+    "tree-sitter-cli": "^0.26.3"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.22.4"
+    "tree-sitter": "^0.25.0"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {
@@ -48,7 +49,6 @@
   },
   "scripts": {
     "install": "node-gyp-build",
-    "lint": "eslint grammar.js",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js"
