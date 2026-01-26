@@ -12,6 +12,9 @@
     "name": "Ian Boll",
     "email": "mainbollian@gmail.com"
   },
+  "maintainers": [
+    "Mikhail Katychev <mkatych@gmail.com>"
+  ],
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [

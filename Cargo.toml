@@ -1,8 +1,8 @@
 [package]
-name = "tree-sitter-openscad"
+name = "tree-sitter-openscad-ng"
 description = "OpenSCAD grammar for tree-sitter"
 version = "0.7.0"
-authors = ["Ian Boll <mainbollian@gmail.com>"]
+authors = ["Ian Boll <mainbollian@gmail.com>", "Mikhail Katychev <mkatych@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "openscad"]
