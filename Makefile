@@ -1,6 +1,6 @@
 LANGUAGE_NAME := tree-sitter-openscad
 HOMEPAGE_URL := https://github.com/openscad/tree-sitter-openscad
-VERSION := 0.7.0
+VERSION := 0.7.1
 
 # repository
 SRC_DIR := src

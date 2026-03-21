@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-openscad-ng"
 description = "OpenSCAD grammar for tree-sitter"
-version = "0.7.0"
+version = "0.7.1"
 authors = ["Ian Boll <mainbollian@gmail.com>", "Mikhail Katychev <mkatych@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -23,6 +23,7 @@ include = [
 
 [lib]
 path = "bindings/rust/lib.rs"
+name = "tree_sitter_openscad"
 
 [dependencies]
 tree-sitter-language = "0.1"
