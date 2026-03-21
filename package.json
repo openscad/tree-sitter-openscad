@@ -1,6 +1,6 @@
 {
   "name": "@openscad/tree-sitter-openscad",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "OpenSCAD grammar for tree-sitter",
   "type": "module",
   "repository": {
