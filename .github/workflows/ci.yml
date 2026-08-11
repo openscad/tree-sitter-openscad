@@ -35,9 +35,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
       - name: Set up tree-sitter
-        uses: tree-sitter/setup-action/cli@v2
+        uses: tree-sitter/setup-action/cli@master
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v3
+        uses: tree-sitter/parser-test-action@master
         with:
           test-rust: true
           # https://github.com/tree-sitter/node-tree-sitter/issues/268
