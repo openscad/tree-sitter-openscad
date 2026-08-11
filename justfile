@@ -24,14 +24,16 @@ gen:
 update-tests: gen
     tree-sitter test -u
 
+# Lint all the things
 lint:
-    eslint grammar.js
+    npx eslint grammar.js
     typos
-    just --fmt --check
+    just --fmt --unstable --check
 
 fmt:
-    eslint --fix grammar.js
-    topiary fmt ./queries/*.scm ./examples/*.scad
+    npx eslint --fix grammar.js
+    ts_query_ls format ./queries
+    # topiary fmt ./examples/*.wit
     just --fmt --unstable
     nixfmt flake.nix shell.nix
 
@@ -41,14 +43,13 @@ show-graph:
 
 # updates node package.json to latest available
 update:
-    npm outdated --parseable | awk -F: '{ printf("%s ", $4); }' | xargs npm install
-    cargo upgrade && cargo update
-    nix flake update
+    pnpm outdated --format json | jq  'keys[]' | xargs pnpm update
+    cargo upgrade --incompatible && cargo update
 
 # updates node package.json to latest available
 outdated:
     @printf '{{ yellow }}=={{ reset }}NPM{{ yellow }}=={{ reset }}\n'
-    npm outdated || true # `npm outdated` returns exit code 1 on finding outdated stuff ?!
+    npx outdated -y || true # `npoutdated` returns exit code 1 on finding outdated stuff ?!
     @printf '{{ yellow }}={{ reset }}Cargo{{ yellow }}={{ reset }}\n'
     cargo outdated -d 1
     @printf '{{ yellow }}======={{ reset }}\n'
