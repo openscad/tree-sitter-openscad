@@ -33,9 +33,9 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-14]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: Set up tree-sitter
-        uses: tree-sitter/setup-action/cli@v2
+        uses: tree-sitter/setup-action/cli@master
       - name: Run tests
         uses: tree-sitter/parser-test-action@v3
         with:

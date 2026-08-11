@@ -1,5 +1,5 @@
 {
-  "name": "@openscad/tree-sitter-openscad",
+  "name": "tree-sitter-openscad",
   "version": "0.7.1",
   "description": "OpenSCAD grammar for tree-sitter",
   "type": "module",
@@ -9,12 +9,9 @@
   },
   "license": "MIT",
   "author": {
-    "name": "Ian Boll",
-    "email": "mainbollian@gmail.com"
+    "name": "Mikhail Katychev",
+    "email": "mkatych@gmail.com"
   },
-  "maintainers": [
-    "Mikhail Katychev <mkatych@gmail.com>"
-  ],
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [
@@ -34,16 +31,16 @@
     "*.wasm"
   ],
   "dependencies": {
-    "node-addon-api": "^8.5.0",
+    "node-addon-api": "^8.9.1",
     "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
     "prebuildify": "^6.0.1",
-    "tree-sitter": "^0.25.0",
-    "tree-sitter-cli": "^0.26.3"
+    "tree-sitter": "^0.25.1",
+    "tree-sitter-cli": "^0.26.12"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.25.0"
+    "tree-sitter": "^0.25.1"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {

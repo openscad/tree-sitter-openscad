@@ -18,12 +18,12 @@
     "description": "OpenSCAD grammar for tree-sitter",
     "authors": [
       {
-        "name": "Ian Boll",
-        "email": "mainbollian@gmail.com"
-      },
-      {
         "name": "Mikhail Katychev",
         "email": "mkatych@gmail.com"
+      },
+      {
+        "name": "Ian Boll",
+        "email": "mainbollian@gmail.com"
       }
     ],
     "links": {
