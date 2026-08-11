@@ -10,7 +10,13 @@
   ")"
 ] @indent.end
 
-(arguments ")" @indent.branch)
-(parameters ")" @indent.branch)
+(arguments
+  ")" @indent.branch)
 
-[(line_comment) (block_comment)] @indent.ignore
+(parameters
+  ")" @indent.branch)
+
+[
+  (line_comment)
+  (block_comment)
+] @indent.ignore
