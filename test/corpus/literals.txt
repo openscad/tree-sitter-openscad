@@ -200,6 +200,8 @@ grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
 let_each = [for(i = [0:1]) let(a=90) each arc(angle=a)];
 let_for = [let (i=[0:1]) for(i = i) let(a=90) each arc(angle=a)];
 let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
+// let_if_chain = [for(i=[0:1]) let(a=1) let(b=2) if(b>0) 1];
+// let_for_chain = [let (i=[0:1]) let (j=2) for(i = i) let(a=90+j) each arc(angle=a)];
 --------------------------------------------------------------------------------
 
 (source_file
@@ -424,11 +426,12 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
                   (integer)
                   (integer))))
             (each
-              (let_prefix
-                (assignments
-                  (assignment
-                    (identifier)
-                    (integer))))
+              (let_chain
+                (let_prefix
+                  (assignments
+                    (assignment
+                      (identifier)
+                      (integer)))))
               (function_call
                 (identifier)
                 (arguments
@@ -440,24 +443,26 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
       (identifier)
       (list
         (list_comprehension
-          (for_clause
+          (let_chain
             (let_prefix
               (assignments
                 (assignment
                   (identifier)
                   (range
                     (integer)
-                    (integer)))))
+                    (integer))))))
+          (for_clause
             (assignments
               (assignment
                 (identifier)
                 (identifier)))
             (each
-              (let_prefix
-                (assignments
-                  (assignment
-                    (identifier)
-                    (integer))))
+              (let_chain
+                (let_prefix
+                  (assignments
+                    (assignment
+                      (identifier)
+                      (integer)))))
               (function_call
                 (identifier)
                 (arguments
@@ -477,18 +482,21 @@ let_if = [for(i = [0:1]) let(a=360) if (is_def(isect)) isect];
                   (integer)
                   (integer))))
             (list_comprehension
-              (if_clause
+              (let_chain
                 (let_prefix
                   (assignments
                     (assignment
                       (identifier)
-                      (integer))))
+                      (integer)))))
+              (if_clause
                 (parenthesized_expression
                   (function_call
                     (identifier)
                     (arguments
                       (identifier))))
-                (identifier)))))))))
+                (identifier))))))))
+  (line_comment)
+  (line_comment))
 
 ================================================================================
 Integers
@@ -519,7 +527,7 @@ a = [1, 2, 3];
 list = [1, 2, each a, each ([3, 4]), each 5, each for (x = [1:10]) x];
 str_list = [each false, each [1:2], each undef, each "hello"];
 fn_list = [each function() 10];
-each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
+each_if = [each if (len(a) < 5) 10 else 15, let (x=5) let(y=true) each if (len(str_list) < x) y];
 --------------------------------------------------------------------------------
 
 (source_file
@@ -594,6 +602,17 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
               (integer)
               (integer))))
         (each
+          (let_chain
+            (let_prefix
+              (assignments
+                (assignment
+                  (identifier)
+                  (integer))))
+            (let_prefix
+              (assignments
+                (assignment
+                  (identifier)
+                  (boolean)))))
           (list_comprehension
             (if_clause
               (parenthesized_expression
@@ -602,5 +621,43 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
                     (identifier)
                     (arguments
                       (identifier)))
-                  (integer)))
-              (boolean))))))))
+                  (identifier)))
+              (identifier))))))))
+
+================================================================================
+issue-10
+================================================================================
+x = [for(i=[0:1]) let(a=1) let(b=2) if (b>0) 1];
+--------------------------------------------------------------------------------
+
+(source_file
+  (var_declaration
+    (assignment
+      (identifier)
+      (list
+        (list_comprehension
+          (for_clause
+            (assignments
+              (assignment
+                (identifier)
+                (range
+                  (integer)
+                  (integer))))
+            (list_comprehension
+              (let_chain
+                (let_prefix
+                  (assignments
+                    (assignment
+                      (identifier)
+                      (integer))))
+                (let_prefix
+                  (assignments
+                    (assignment
+                      (identifier)
+                      (integer)))))
+              (if_clause
+                (parenthesized_expression
+                  (binary_expression
+                    (identifier)
+                    (integer)))
+                (integer)))))))))
