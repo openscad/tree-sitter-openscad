@@ -407,7 +407,7 @@
           "named": true
         },
         {
-          "type": "let_prefix",
+          "type": "let_chain",
           "named": true
         },
         {
@@ -491,10 +491,6 @@
         },
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "let_prefix",
           "named": true
         },
         {
@@ -698,16 +694,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "let_prefix",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -804,6 +790,21 @@
     }
   },
   {
+    "type": "let_chain",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "let_prefix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "let_expression",
     "named": true,
     "fields": {
@@ -823,7 +824,7 @@
       "required": true,
       "types": [
         {
-          "type": "assignments",
+          "type": "let_prefix",
           "named": true
         }
       ]
@@ -878,7 +879,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -887,6 +888,10 @@
         },
         {
           "type": "if_clause",
+          "named": true
+        },
+        {
+          "type": "let_chain",
           "named": true
         }
       ]

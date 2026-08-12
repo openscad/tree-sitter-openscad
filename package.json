@@ -1,6 +1,7 @@
 {
   "name": "tree-sitter-openscad",
   "version": "0.7.1",
+  "packageManager": "pnpm@11.21.0",
   "description": "OpenSCAD grammar for tree-sitter",
   "type": "module",
   "repository": {
@@ -35,6 +36,9 @@
     "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "eslint-config-treesitter": "^1.0.2",
     "prebuildify": "^6.0.1",
     "tree-sitter": "^0.25.1",
     "tree-sitter-cli": "^0.26.12"
@@ -49,6 +53,7 @@
   },
   "scripts": {
     "install": "node-gyp-build",
+    "lint": "eslint grammar.js",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js"

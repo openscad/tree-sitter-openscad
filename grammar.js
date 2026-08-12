@@ -119,6 +119,7 @@ export default grammar({
     $.statement,
   ],
 
+
   word: $ => $.identifier,
 
   rules: {
@@ -271,7 +272,14 @@ export default grammar({
       field('update', commaSep($.assignment)),
     )),
 
-    let_expression: $ => bodied_block('let', $.assignments, $.expression),
+    let_prefix: $ => seq(
+      'let',
+      $.assignments,
+    ),
+
+    let_expression: $ => prec(11,
+      seq($.let_prefix, field('body', $.expression)),
+    ),
 
     // atoms that create immediate values
     literal: $ => choice(
@@ -306,27 +314,25 @@ export default grammar({
       choice(parens($.list_comprehension), $.list_comprehension),
     ),
     each: $ => seq(
-      optional($.let_prefix),
+      optional($.let_chain),
       'each',
       choice($.expression, $.list_comprehension),
     ),
 
     list_comprehension: $ => seq(
+      optional($.let_chain),
       choice($.for_clause, $.if_clause),
     ),
-    // TODO dry up let variants
-    let_prefix: $ => seq(
-      'let',
-      $.assignments,
-    ),
+    let_chain: $ => prec.left(1, seq(
+      $.let_prefix,
+      repeat($.let_prefix),
+    )),
     for_clause: $ => seq(
-      optional($.let_prefix),
       'for',
       choice($.assignments, $.condition_update_clause),
       $._comprehension_cell,
     ),
     if_clause: $ => prec.right(seq(
-      optional($.let_prefix),
       'if',
       field('condition', $.parenthesized_expression),
       field('consequence', $._comprehension_cell),
@@ -412,6 +418,7 @@ export default grammar({
       seq('\\',
         choice(
           /[^xu]/,
+          /""""/,
           /[nrt"\\]/,
           /u[0-9a-fA-F]{4}/,
           /u\{[0-9a-fA-F]+\}/,
@@ -430,13 +437,13 @@ export default grammar({
     ),
 
     number: $ => choice($.integer, $.float),
-    integer: _=>
+    integer: _ =>
       token(
         seq(optional(token.immediate('-')),
           /\d+/,
           optional(token.immediate(EXPONENT)),
         )),
-    float: _=> token(
+    float: _ => token(
       seq(
         optional(token.immediate('-')),
         /(\d+\.\d*|\.\d+)/,

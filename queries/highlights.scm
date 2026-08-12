@@ -6,49 +6,75 @@
 (include_path) @string.special.path
 
 ; Functions
+(function_item
+  (identifier) @function)
 
 (function_item
-  (identifier) @function
-)
-(function_item
-  parameters: (parameters (parameter (assignment value: (_) @constant)))
-)
-(function_call name: (identifier) @function.call)
+  parameters: (parameters
+    (parameter
+      (assignment
+        value: (_) @constant))))
+
 (function_call
-  arguments: (arguments (assignment name: _ @variable.parameter))
-)
+  name: (identifier) @function.call)
+
+(function_call
+  arguments: (arguments
+    (assignment
+      name: _ @variable.parameter)))
+
 ; for the puroposes of distinction since modules are "coloured" impure functions, we will treat them as methods
-(module_item (identifier) @function.method)
 (module_item
-  parameters: (parameters (parameter (assignment value: (_) @constant)))
-)
-(module_call name: (identifier) @function.method.call)
+  (identifier) @function.method)
+
+(module_item
+  parameters: (parameters
+    (parameter
+      (assignment
+        value: (_) @constant))))
+
 (module_call
-  arguments: (arguments (assignment name: _ @variable.parameter))
-)
+  name: (identifier) @function.method.call)
+
+(module_call
+  arguments: (arguments
+    (assignment
+      name: _ @variable.parameter)))
 
 ; assertion statements/expression arguments behave similar to function calls
 (assert_expression
-  arguments: (arguments (assignment name: _ @variable.parameter))
-)
+  arguments: (arguments
+    (assignment
+      name: _ @variable.parameter)))
+
 (assert_statement
-  arguments: (arguments (assignment name: _ @variable.parameter))
-)
+  arguments: (arguments
+    (assignment
+      name: _ @variable.parameter)))
 
 (echo_expression
-  arguments: (arguments (assignment name: _ @variable.parameter))
-)
-(echo_expression "echo" @function.builtin)
+  arguments: (arguments
+    (assignment
+      name: _ @variable.parameter)))
+
+(echo_expression
+  "echo" @function.builtin)
 
 ; Variables
 (parameter
-  [_ @variable.parameter (assignment name: _ @variable.parameter)]
-)
+  [
+    _ @variable.parameter
+    (assignment
+      name: _ @variable.parameter)
+  ])
+
 (special_variable) @variable.builtin
+
 (undef) @constant.builtin
 
 ; Types/Properties/
-(dot_index_expression index: (_) @variable.member)
+(dot_index_expression
+  index: (_) @variable.member)
 
 ; Keywords
 [
@@ -58,8 +84,10 @@
   "assign"
   "use"
   "each"
-  (assert_statement "assert")
-  (assert_expression "assert")
+  (assert_statement
+    "assert")
+  (assert_expression
+    "assert")
 ] @keyword
 
 ; Operators
@@ -87,47 +115,24 @@
 (module_call
   name: (identifier) @function.builtin
   (#any-of? @function.builtin
-    "circle"
-    "color"
-    "cube"
-    "cylinder"
-    "difference"
-    "hull"
-    "intersection"
-    "linear_extrude"
-    "minkowski"
-    "mirror"
-    "multmatrix"
-    "offset"
-    "polygon"
-    "polyhedron"
-    "projection"
-    "resize"
-    "rotate"
-    "rotate_extrude"
-    "scale"
-    "sphere"
-    "square"
-    "surface"
-    "text"
-    "translate"
-    "union"
-    "echo"
-  )
-)
-(
-  (identifier) @identifier
-  (#eq? @identifier "PI")
-) @constant.builtin
+    "circle" "color" "cube" "cylinder" "difference" "hull" "intersection" "linear_extrude"
+    "minkowski" "mirror" "multmatrix" "offset" "polygon" "polyhedron" "projection" "resize" "rotate"
+    "rotate_extrude" "scale" "sphere" "square" "surface" "text" "translate" "union" "echo"))
+
+((identifier) @identifier
+  (#eq? @identifier "PI")) @constant.builtin
 
 ; Conditionals
 [
   "if"
   "else"
 ] @keyword.conditional
+
 (ternary_expression
-  ["?" ":"] @keyword.conditional.ternary
-)
+  [
+    "?"
+    ":"
+  ] @keyword.conditional.ternary)
 
 ; Repeats
 [
@@ -137,9 +142,13 @@
 
 ; Literals
 (integer) @number
+
 (float) @number.float
+
 (string) @string
+
 (escape_sequence) @string.escape
+
 (boolean) @boolean
 
 ; Misc
@@ -149,11 +158,23 @@
     "!"
     "#"
     "%"
-  ] @keyword.modifier
-)
-["{" "}"] @punctuation.bracket
-["(" ")"] @punctuation.bracket
-["[" "]"] @punctuation.bracket
+  ] @keyword.modifier)
+
+[
+  "{"
+  "}"
+] @punctuation.bracket
+
+[
+  "("
+  ")"
+] @punctuation.bracket
+
+[
+  "["
+  "]"
+] @punctuation.bracket
+
 [
   ";"
   ","
@@ -161,4 +182,7 @@
 ] @punctuation.delimiter
 
 ; Comments
-[(line_comment) (block_comment)] @comment @spell
+[
+  (line_comment)
+  (block_comment)
+] @comment @spell
