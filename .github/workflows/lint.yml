@@ -18,6 +18,6 @@ jobs:
       - name: Set up Node.js
         uses: pnpm/setup@v2
       - name: Install modules
-        run: pnpm ci --legacy-peer-deps
+        run: pnpm ci
       - name: Run ESLint
         run: pnpm run lint
